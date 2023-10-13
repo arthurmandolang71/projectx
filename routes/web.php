@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// admin system
+Route::redirect('/', '/login');
+
+Route::redirect('/home', '/welcome');
+
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'index')->middleware('guest')->name('login');
+    Route::post('/login', 'auth');
+    Route::post('/logout', 'logout');
 });
+
+Route::controller(ProfilController::class)->middleware('auth')->group(function () {
+    Route::get('/profil/{user}', 'show');
+    Route::get('/profil/{user}/edit', 'edit');
+    Route::put('/profil/{user}', 'update');
+});
+

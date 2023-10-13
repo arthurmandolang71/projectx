@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('caleg_dapil_kabkota', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->nullable();
+            $table->foreignUuid('partai_id')->nullable();
             $table->string('nama')->nullable();
             $table->string('no_urut')->nullable();
             $table->string('jenis_kelamin')->nullable();

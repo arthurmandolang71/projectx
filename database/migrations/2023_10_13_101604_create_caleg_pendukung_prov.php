@@ -13,8 +13,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('caleg_pendukung_prov', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('referensi_id')->nullable();
+            $table->foreignUuid('celeg_id');
+            $table->foreignUuid('klasifikasi_id')->nullable();
+            $table->string('ktp')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->string('tanggal_lahir')->nullable();
+            $table->string('strtime_tanggal_lahir')->nullable();
+            $table->string('status_perkawinan')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('alamat_detail')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('no_wa')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('ref_kabkota')->nullable();
+            $table->string('long')->nullable();
+            $table->string('lat')->nullable();
         });
     }
 

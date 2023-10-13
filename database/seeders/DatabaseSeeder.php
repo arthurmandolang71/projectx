@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
+use App\Models\Partai;
 use App\Models\CalegRi;
 use App\Models\DapilRi;
 use App\Models\RefAgama;
@@ -25,7 +26,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
        
-
         //user login utama
         User::create([
             'name' => 'unknow',
@@ -55,6 +55,115 @@ class DatabaseSeeder extends Seeder
             'prov' => 71,
             'active' => 1,
             'foto' => 'defaul_user.jpg',
+        ]);
+
+
+        Partai::create([
+            'nama' => 'Partai Kebangkitan Bangsa',
+            'nama_singkat' => 'PKB',
+            'logo' => 'PKB.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Gerakan Indonesia Raya',
+            'nama_singkat' => 'Gerindra',
+            'logo' => 'Gerindra.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Demokras Indonesia Perjuangan',
+            'nama_singkat' => 'PDIP',
+            'logo' => 'PDIP.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Golongan Karya',
+            'nama_singkat' => 'Golkar',
+            'logo' => 'Golkar.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Nasdem',
+            'nama_singkat' => 'Nasdem',
+            'logo' => 'Nasdem.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Buruh',
+            'nama_singkat' => 'Buruh',
+            'logo' => 'Buruh.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Gelombang Rakyat Indoensia',
+            'nama_singkat' => 'Gelora',
+            'logo' => 'Gelora.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Keadilan Sejahtera',
+            'nama_singkat' => 'PKS',
+            'logo' => 'PKS.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Kebangkitan Nusantara',
+            'nama_singkat' => 'PKN',
+            'logo' => 'PKN.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Hati Nurani Rakyat',
+            'nama_singkat' => 'Hanura',
+            'logo' => 'Hanura.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Garuda Perubahan Indonesia',
+            'nama_singkat' => 'Garuda',
+            'logo' => 'Garuda.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Amanat Nasional',
+            'nama_singkat' => 'PAN',
+            'logo' => 'PAN.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Bulan Bintang',
+            'nama_singkat' => 'PBB',
+            'logo' => 'PBB.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Persatuan Pembangunan',
+            'nama_singkat' => 'PPP',
+            'logo' => 'PPP.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Demokrat',
+            'nama_singkat' => 'Demokrat',
+            'logo' => 'Demokrat.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Solidaritas Indonesia',
+            'nama_singkat' => 'PSI',
+            'logo' => 'PSI.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Perindo',
+            'nama_singkat' => 'Perindo',
+            'logo' => 'Perindo.png'
+        ]);
+
+        Partai::create([
+            'nama' => 'Partai Demo/Latihan',
+            'nama_singkat' => 'demo',
+            'logo' => 'demo.png'
         ]);
 
         // ref agama
