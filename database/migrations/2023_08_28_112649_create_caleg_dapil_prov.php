@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->string('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('no_wa')->nullable();
             $table->string('keterangan')->nullable();
             $table->foreignUuid('dapil_prov')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

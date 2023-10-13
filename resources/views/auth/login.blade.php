@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -33,7 +35,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
-                                        <a href="index.html"><img src="{{ asset('') }}assets/images/nasdem.png"
+                                        <a href="index.html"><img src="{{ asset('') }}assets/images/logosementara.png"
                                                 width="100" alt=""></a>
                                     </div>
 

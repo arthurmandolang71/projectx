@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login');
 
 Route::redirect('/home', '/welcome');
+
+Route::view('/welcome', 'welcome', ['name' => session()->get('name'), 'title' => 'Selamat Datang'])->middleware('auth');
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'index')->middleware('guest')->name('login');

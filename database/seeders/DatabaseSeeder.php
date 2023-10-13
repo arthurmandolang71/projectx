@@ -30,33 +30,22 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'unknow',
             'username' => 'balihobaru',
-            'password' =>  bcrypt('12345678'),
-            'level' => 100,
-            'prov' => 71,
-            'active' => 1,
-            'foto' => 'defaul_user.jpg',
-        ]);
-
-        User::create([
-            'name' => 'Super Admin DPW Sulut',
-            'username' => 'superadmindpw',
-            'password' =>  bcrypt('12345678'),
-            'level' => 10,
-            'prov' => 71,
-            'active' => 1,
-            'foto' => 'defaul_user.jpg',
-        ]);
-
-        User::create([
-            'name' => 'Admin DPW Sulut',
-            'username' => 'admindpw',
-            'password' =>  bcrypt('12345678'),
+            'password' =>  bcrypt('testesjodulu'),
             'level' => 1,
             'prov' => 71,
             'active' => 1,
             'foto' => 'defaul_user.jpg',
         ]);
 
+        User::create([
+            'name' => 'unknow',
+            'username' => 'adminbaru',
+            'password' =>  bcrypt('12345678'),
+            'level' => 1,
+            'prov' => 71,
+            'active' => 1,
+            'foto' => 'defaul_user.jpg',
+        ]);
 
         Partai::create([
             'nama' => 'Partai Kebangkitan Bangsa',
