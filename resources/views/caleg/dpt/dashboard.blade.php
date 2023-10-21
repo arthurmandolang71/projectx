@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('header')
 @endSection
@@ -8,8 +8,8 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="/dptcaleg/dash?prov=71">DPT</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/dptcaleg/dash?prov=71">Penjaringan</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard DPT</a></li>
                 </ol>
             </div>
             <!-- row -->

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\DapilProvWilayah;
 use Illuminate\Routing\Controller;
 use App\Models\DapilKabkotaWilayah;
+use App\Models\Partai;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -37,6 +38,10 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             // Caleg
+            if (auth()->user()->level == 1) {
+                $request->session()->put('color', 'color_11');
+            }
+
             if (auth()->user()->level == 2) {
                 $level_caleg = auth()->user()->caleg_level;
 
@@ -67,6 +72,7 @@ class LoginController extends Controller
                     $dapil = DapilKabkotaWilayah::where('dapil_kabkota_id', $caleg->dapil_kabkota)->get();
                     $kabkota_dapil = DapilKabkotaWilayah::where('dapil_kabkota_id', $caleg->dapil_kabkota)->first()->kabkota;
                     $dapil_kecamatan = [];
+
                     foreach ($dapil as $item) {
                         array_push($dapil_kecamatan, $item->kecamatan);
                     }
@@ -77,8 +83,20 @@ class LoginController extends Controller
                     $request->session()->put('kecamatan_dapil', $dapil_kecamatan);
                 }
 
+                $partai = Partai::where('id', $caleg->partai_id)->first();
+
+                $request->session()->put('logo', $partai->logo);
+                $request->session()->put('logo_text', $partai->logo_text);
+                $request->session()->put('color', $partai->color);
+
+                $request->session()->put('level_caleg', $level_caleg);
+
                 $request->session()->put('level_caleg', $level_caleg);
                 $request->session()->put('caleg_id', $caleg->id);
+            } else {
+                $request->session()->put('logo', 'logosementara.png');
+                $request->session()->put('logo_text', 'logotextsementara.png');
+                $request->session()->put('color', 11);
             }
 
             $id = auth()->user()->id;

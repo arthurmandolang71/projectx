@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('content')
     <div class="content-body">
@@ -6,7 +6,7 @@
             <div class="row page-titles">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active"><a href="/kta">Profil</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Ganti Password</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">My Profil</a></li>
                 </ol>
             </div>
             <!-- row -->
@@ -22,7 +22,6 @@
                                             aria-label="Close"></button>
                                     </div>
                                 </div>
-                                <br><Br>
                             @endif
                             <div class="profile-info">
                                 <div class="profile-photo">
@@ -36,35 +35,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="/profil/{{ $profil->id }}" method="post">
-                                @csrf
-                                @method('PUT')
-                                <small class="card-text text-uppercase">Ganti Password Baru</small>
-                                <div class="form-floating">
-                                    <input type="text" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" id="floatingInput"
-                                        placeholder="Masukan password baru" aria-describedby="floatingInputHelp"
-                                        value="{{ old('password') }}" required />
-                                    <label for="floatingInput">Password</label>
-                                    <div id="floatingInputHelp" class="form-text">
-                                        Masukan password minimal 6 karakter
-                                    </div>
-                                    @error('password')
-                                        <div id="floatingInputHelp" class="form-text invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <br>
-
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-label-success" id="auto-close">
-                                        <span class="ti-xs ti ti-key me-1"></span>Ganti Password
-                                    </button>
-                                </div>
-
-                            </form>
                         </div>
                     </div>
                 </div>

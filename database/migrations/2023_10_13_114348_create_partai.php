@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('nama_singkat')->nullable();
             $table->string('logo')->nullable();
+            $table->string('logo_text')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

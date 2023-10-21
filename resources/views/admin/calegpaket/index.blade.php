@@ -44,20 +44,45 @@
                                 <table id="example2" class="display" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Caleg</th>
-                                            <th>Nama</th>
-                                            <th>Partai</th>
-                                            <th>Nomor Urut</th>
-                                            <th>Dapil</th>
+                                            <th>Tipe</th>
+                                            <th>Calon A</th>
+                                            <th>Calon B</th>
+                                            <th>tercatat</th>
                                             <th>Status</th>
-                                            <th>Terdaftar</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($caleg_ri as $item)
+                                        @foreach ($paket_prov as $item)
                                             <tr>
-                                                <td>RI</td>
+                                                <td>Paket Kab/Kota * Provinsi </td>
+                                                <td>{{ $item-> }}</td>
+                                                <td>{{ $item->partai->nama_singkat }}</td>
+                                                <td>{{ $item->no_urut }}</td>
+                                                <td>{{ $item->dapil->nama }}
+                                                    <small>{{ $item->dapil->keterangan }}</small>
+                                                </td>
+                                                <td>
+                                                    @if ($item->user->active)
+                                                        <span class="badge badge-lg light badge-primary">Aktif</span>
+                                                    @else
+                                                        <span class="badge badge-lg light badge-danger">Tidak
+                                                            Aktif</span>
+                                                    @endif
+
+                                                </td>
+                                                <td>{{ $item->created_at->diffForHumans() }}</td>
+                                                <td>
+                                                    <a href="/caleg/{{ $item->id }}/edit"
+                                                        class="btn btn-rounded btn-primary"><span
+                                                            class="btn-icon-start text-primary"><i class="fa fa-edit"></i>
+                                                        </span></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        @foreach ($caleg_ro as $item)
+                                            <tr>
+                                                <td>Paket Kab/Kota * RI </td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->partai->nama_singkat }}</td>
                                                 <td>{{ $item->no_urut }}</td>
@@ -82,71 +107,15 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        @foreach ($caleg_prov as $item)
-                                            <tr>
-                                                <td>PROVINSI</td>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->partai->nama_singkat }}</td>
-                                                <td>{{ $item->no_urut }}</td>
-                                                <td>{{ $item->dapil->nama }}
-                                                    <small>{{ $item->dapil->keterangan }}</small>
-                                                </td>
-                                                <td>
-                                                    @if ($item->user->active)
-                                                        <span class="badge badge-lg light badge-primary">Aktif</span>
-                                                    @else
-                                                        <span class="badge badge-lg light badge-danger">Tidak
-                                                            Aktif</span>
-                                                    @endif
 
-                                                </td>
-                                                <td>{{ $item->created_at->diffForHumans() }}</td>
-                                                <td>
-                                                    <a href="/caleg/{{ $item->id }}/edit"
-                                                        class="btn btn-rounded btn-primary"><span
-                                                            class="btn-icon-start text-primary"><i class="fa fa-edit"></i>
-                                                        </span></a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        @foreach ($caleg_kabkota as $item)
-                                            <tr>
-                                                <td>Kabupaten/Kota</td>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->partai->nama_singkat }}</td>
-                                                <td>{{ $item->no_urut }}</td>
-                                                <td>{{ $item->dapil->nama }}
-                                                    <small>{{ $item->dapil->keterangan }}</small>
-                                                </td>
-                                                <td>
-                                                    @if ($item->user->active)
-                                                        <span class="badge badge-lg light badge-primary">Aktif</span>
-                                                    @else
-                                                        <span class="badge badge-lg light badge-danger">Tidak
-                                                            Aktif</span>
-                                                    @endif
-
-                                                </td>
-                                                <td>{{ $item->created_at->diffForHumans() }}</td>
-                                                <td>
-                                                    <a href="/caleg/{{ $item->id }}/edit"
-                                                        class="btn btn-rounded btn-primary"><span
-                                                            class="btn-icon-start text-primary"><i class="fa fa-edit"></i>
-                                                        </span></a>
-                                                </td>
-
-                                            </tr>
-                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Caleg</th>
-                                            <th>Nama</th>
-                                            <th>Partai</th>
-                                            <th>Nomor Urut</th>
-                                            <th>Dapil</th>
+                                            <th>Tipe</th>
+                                            <th>Calon A</th>
+                                            <th>Calon B</th>
+                                            <th>tercatat</th>
                                             <th>Status</th>
-                                            <th>Terdaftar</th>
                                             <th>#</th>
                                         </tr>
                                     </tfoot>

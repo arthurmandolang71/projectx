@@ -10,4 +10,5 @@ class Partai extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'partai';
+    // protected $fillable = ['partai_id'];
 }

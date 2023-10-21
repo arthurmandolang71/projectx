@@ -31,13 +31,20 @@
 </head>
 
 <body>
+    @php
+        $color = session()->get('color');
+        $logo_text = session()->get('logo_text');
+        $logo = session()->get('logo');
+        // dd($logo);
+    @endphp
+
 
     <!--*******************
         Preloader start
     ********************-->
     <div id="preloader">
-        <img src="{{ asset('') }}assets/images/logosementara.png" class="logo-abbr" width="53" height="53"
-            viewBox="0 0 53 53"> <br>
+        <img src="{{ asset('') }}assets/images/logo/{{ $logo }}" class="logo-abbr" width="53"
+            height="53" viewBox="0 0 53 53"> <br>
         <div class="waviy">
             <span style="--i:1">K</span>
             <span style="--i:2">A</span>
@@ -125,7 +132,58 @@
         Scripts
     ***********************************-->
     <script src="{{ asset('') }}assets/js/custom.min.js"></script>
-    <script src="{{ asset('') }}assets/js/dlabnav-init.js"></script>
+    {{-- <script src="{{ asset('') }}assets/js/dlabnav-init.js"></script> --}}
+
+    <script>
+        "use strict"
+
+        var dezSettingsOptions = {};
+
+        function getUrlParams(dParam) {
+            var dPageURL = window.location.search.substring(1),
+                dURLVariables = dPageURL.split('&'),
+                dParameterName,
+                i;
+
+            for (i = 0; i < dURLVariables.length; i++) {
+                dParameterName = dURLVariables[i].split('=');
+
+                if (dParameterName[0] === dParam) {
+                    return dParameterName[1] === undefined ? true : decodeURIComponent(dParameterName[1]);
+                }
+            }
+        }
+
+        (function($) {
+
+            "use strict"
+
+            dezSettingsOptions = {
+                typography: "cairo",
+                version: "light",
+                layout: "horizontal",
+                primary: "{{ $color }}",
+                navheaderBg: "{{ $color }}",
+                sidebarBg: "{{ $color }}",
+                sidebarStyle: "full",
+                sidebarPosition: "fixed",
+                headerPosition: "fixed",
+                containerLayout: "full",
+            };
+
+            new dezSettings(dezSettingsOptions);
+
+            jQuery(window).on('resize', function() {
+                /*Check container layout on resize */
+                //alert(dezSettingsOptions.primary);
+                dezSettingsOptions.containerLayout = $('#container_layout').val();
+                /*Check container layout on resize END */
+
+                new dezSettings(dezSettingsOptions);
+            });
+
+        })(jQuery);
+    </script>
 
 
 

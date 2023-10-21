@@ -3,8 +3,7 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="{{ asset('') }}assets/images/profile/{{ auth()->user()->foto }}" width="20"
-                        alt="" />
+                    <img src="{{ auth()->user()->foto_profil }}" width="20" alt="" />
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi,<b>{{ auth()->user()->username }}</b></span>
                         <small class="text-end font-w400">{{ auth()->user()->name }}</small>
@@ -51,8 +50,60 @@
                         <span class="nav-text">Caleg</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/kta">Data Caleg</a></li>
-                        <li><a href='/kta/create'>Tambah Caleg</a></li>
+                        <li><a href="/caleg">Data Caleg</a></li>
+                        <li><a href='/caleg/create'>Tambah Caleg</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-people-fill"></i>
+                        <span class="nav-text">Paket Caleg</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/calegpaket">Data Paket Caleg</a></li>
+                        <li><a href='/calegpaket/create'>Tambah Paket Caleg</a></li>
+                    </ul>
+                </li>
+            @endcan
+
+            @can('isCaleg')
+                <li>
+                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-people-fill"></i>
+                        <span class="nav-text">Penjaringan</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href='/dptcaleg'>Penjaringan</a></li>
+                        <li><a href="/dptcaleg/dash?prov=71">Dashboard</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-flag-fill"></i>
+                        <span class="nav-text">Penyaringan</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/caledpt">Penyaringan</a></li>
+                        <li><a href='/calegdpt/dash'>Dashboard</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-person"></i>
+                        <span class="nav-text">Relawan</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/calegpaket">Relawan</a></li>
+                        <li><a href='/calegpaket/create'>Tim</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-gear-fill"></i>
+                        <span class="nav-text">Pengaturan</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/calegpaket">Klasifkasi Pendukung</a></li>
                     </ul>
                 </li>
             @endcan

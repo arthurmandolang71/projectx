@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('caleg_prov');
             $table->foreignUuid('caleg_kabkota');
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }

@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalegController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\DptCalegController;
+use App\Http\Controllers\CalegPaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +37,15 @@ Route::controller(ProfilController::class)->middleware('auth')->group(function (
     Route::put('/profil/{user}', 'update');
 });
 
+Route::resource('/caleg', CalegController::class)->middleware('isAdmin')->except(['destroy', 'show']);
+
+Route::resource('/calegpaket', CalegPaketController::class)->middleware('isAdmin')->except(['destroy', 'show']);
+
+Route::controller(DptCalegController::class)->middleware('isCaleg')->group(function () {
+    Route::get('/dptcaleg', 'index');
+    Route::get('/dptcaleg/dash', 'dashboard');
+
+    Route::get('/get_kecamatan/dptcaleg/{id}', 'getKecamatan');
+    Route::get('/get_kelurahandesa/dptcaleg/{id}', 'getKelurahanDesa');
+    Route::get('/get_tps/dptcaleg/{id}', 'getTps');
+});

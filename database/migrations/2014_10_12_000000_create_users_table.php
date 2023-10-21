@@ -18,12 +18,9 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('active')->default(0);
             $table->integer('level')->nullable();
-            $table->string('prov')->nullable();
-            $table->string('kabkota')->nullable();
-            $table->string('kecamatan')->nullable();
-            $table->string('kelurahan_desa')->nullable();
             $table->string('caleg_level')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('foto_profil')->nullable();
+            $table->string('foto_banner')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

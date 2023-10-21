@@ -6,11 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Partai;
-use App\Models\CalegRi;
 use App\Models\DapilRi;
 use App\Models\RefAgama;
 use App\Models\DapilProv;
-use Illuminate\Support\Str;
 use App\Models\RefPekerjaan;
 use App\Models\RefPendidikan;
 use App\Models\DapilRiWilayah;
@@ -32,9 +30,9 @@ class DatabaseSeeder extends Seeder
             'username' => 'balihobaru',
             'password' =>  bcrypt('testesjodulu'),
             'level' => 1,
-            'prov' => 71,
             'active' => 1,
-            'foto' => 'defaul_user.jpg',
+            'foto_profil' => 'default_user.jpg',
+            'foto_banner' => 'default_banner.jpg',
         ]);
 
         User::create([
@@ -42,117 +40,153 @@ class DatabaseSeeder extends Seeder
             'username' => 'adminbaru',
             'password' =>  bcrypt('12345678'),
             'level' => 1,
-            'prov' => 71,
             'active' => 1,
-            'foto' => 'defaul_user.jpg',
+            'foto_profil' => 'default_user.jpg',
+            'foto_banner' => 'default_banner.jpg',
         ]);
 
         Partai::create([
             'nama' => 'Partai Kebangkitan Bangsa',
             'nama_singkat' => 'PKB',
-            'logo' => 'PKB.png'
+            'logo' => 'PKB.png',
+            'logo_text' => 'PKB_text.png',
+            'color' => 'color_15'
         ]);
 
         Partai::create([
             'nama' => 'Partai Gerakan Indonesia Raya',
             'nama_singkat' => 'Gerindra',
-            'logo' => 'Gerindra.png'
+            'logo' => 'Gerindra.png',
+            'logo_text' => 'Gerindra_text.png',
+            'color' => 'color_7'
         ]);
 
         Partai::create([
             'nama' => 'Partai Demokras Indonesia Perjuangan',
             'nama_singkat' => 'PDIP',
-            'logo' => 'PDIP.png'
+            'logo' => 'PDIP.png',
+            'logo_text' => 'PDIP_text.png',
+            'color' => 'color_5'
         ]);
 
         Partai::create([
             'nama' => 'Partai Golongan Karya',
             'nama_singkat' => 'Golkar',
-            'logo' => 'Golkar.png'
+            'logo' => 'Golkar.png',
+            'logo_text' => 'Golkar_text.png',
+            'color' => 'color_7'
         ]);
 
         Partai::create([
             'nama' => 'Partai Nasdem',
             'nama_singkat' => 'Nasdem',
-            'logo' => 'Nasdem.png'
+            'logo' => 'Nasdem.png',
+            'logo_text' => 'Nasdem_text.png',
+            'color' => 'color_4'
         ]);
 
         Partai::create([
             'nama' => 'Partai Buruh',
             'nama_singkat' => 'Buruh',
-            'logo' => 'Buruh.png'
+            'logo' => 'Buruh.png',
+            'logo_text' => 'Buruh_text.png',
+            'color' => 'color_1'
         ]);
 
         Partai::create([
             'nama' => 'Partai Gelombang Rakyat Indoensia',
             'nama_singkat' => 'Gelora',
-            'logo' => 'Gelora.png'
+            'logo' => 'Gelora.png',
+            'logo_text' => 'Gelora_text.png',
+            'color' => 'color_7'
         ]);
 
         Partai::create([
             'nama' => 'Partai Keadilan Sejahtera',
             'nama_singkat' => 'PKS',
-            'logo' => 'PKS.png'
+            'logo' => 'PKS.png',
+            'logo_text' => 'PKS_text.png',
+            'color' => 'color_15'
         ]);
 
         Partai::create([
             'nama' => 'Partai Kebangkitan Nusantara',
             'nama_singkat' => 'PKN',
-            'logo' => 'PKN.png'
+            'logo' => 'PKN.png',
+            'logo_text' => 'PKN_text.png',
+            'color' => 'color_15'
         ]);
 
         Partai::create([
             'nama' => 'Partai Hati Nurani Rakyat',
             'nama_singkat' => 'Hanura',
-            'logo' => 'Hanura.png'
+            'logo' => 'Hanura.png',
+            'logo_text' => 'Hanura_text.png',
+            'color' => 'color_7'
         ]);
 
         Partai::create([
             'nama' => 'Partai Garuda Perubahan Indonesia',
             'nama_singkat' => 'Garuda',
-            'logo' => 'Garuda.png'
+            'logo' => 'Garuda.png',
+            'logo_text' => 'Geruda_text.png',
+            'color' => 'color_7'
         ]);
 
         Partai::create([
             'nama' => 'Partai Amanat Nasional',
             'nama_singkat' => 'PAN',
-            'logo' => 'PAN.png'
+            'logo' => 'PAN.png',
+            'logo_text' => 'PAN_text.png',
+            'color' => 'color_14'
         ]);
 
         Partai::create([
             'nama' => 'Partai Bulan Bintang',
             'nama_singkat' => 'PBB',
-            'logo' => 'PBB.png'
+            'logo' => 'PBB.png',
+            'logo_text' => 'PBB_text.png',
+            'color' => 'color_15'
         ]);
 
         Partai::create([
             'nama' => 'Partai Persatuan Pembangunan',
             'nama_singkat' => 'PPP',
-            'logo' => 'PPP.png'
+            'logo' => 'PPP.png',
+            'logo_text' => 'PPP_text.png',
+            'color' => 'color_15'
         ]);
 
         Partai::create([
             'nama' => 'Partai Demokrat',
             'nama_singkat' => 'Demokrat',
-            'logo' => 'Demokrat.png'
+            'logo' => 'Demokrat.png',
+            'logo_text' => 'demokrat_text.png',
+            'color' => 'color_14'
         ]);
 
         Partai::create([
             'nama' => 'Partai Solidaritas Indonesia',
             'nama_singkat' => 'PSI',
-            'logo' => 'PSI.png'
+            'logo' => 'PSI.png',
+            'logo_text' => 'PSI_text.png',
+            'color' => 'color_5'
         ]);
 
         Partai::create([
             'nama' => 'Partai Perindo',
             'nama_singkat' => 'Perindo',
-            'logo' => 'Perindo.png'
+            'logo' => 'Perindo.png',
+            'logo_text' => 'Perindo_text.png',
+            'color' => 'color_14'
         ]);
 
         Partai::create([
             'nama' => 'Partai Demo/Latihan',
             'nama_singkat' => 'demo',
-            'logo' => 'demo.png'
+            'logo' => 'demo.png',
+            'logo_text' => 'demo_text.png',
+            'color' => 'color_1'
         ]);
 
         // ref agama
@@ -490,57 +524,6 @@ class DatabaseSeeder extends Seeder
             'prov' => 71,
         ]);
 
-        //caleg
-        CalegRi::create([
-            'nama' => Str::upper(
-                'Ir. Hj. Tatong Bara'
-            ),
-            'no_urut' => 1,
-            'dapil_ri' => 1,
-        ]);
-
-        CalegRi::create([
-            'nama' => Str::upper(
-                'G. S. Vicky Lumentut, S.H, M.Si'
-            ),
-            'no_urut' => 2,
-            'dapil_ri' => 1,
-        ]);
-
-        CalegRi::create([
-            'nama' => Str::upper(
-                'Maximiliaan Jonas Lomban, M.Si'
-            ),
-            'no_urut' => 3,
-            'dapil_ri' => 1,
-        ]);
-
-        CalegRi::create([
-            'nama' => Str::upper(
-                'Hamim Pou'
-            ),
-            'no_urut' => 4,
-            'dapil_ri' => 1,
-        ]);
-
-        CalegRi::create([
-            'nama' => Str::upper(
-                Str::upper(
-                    'Felly Estelita Runtuwene, SE'
-                )
-            ),
-            'no_urut' => 5,
-            'dapil_ri' => 1,
-        ]);
-
-        CalegRi::create([
-            'nama' => Str::upper(
-                'Andres Makarame Andaria'
-            ),
-            'no_urut' => 6,
-            'dapil_ri' => 1,
-        ]);
-
         //  dapil provinsi
         DapilProv::create([
             'id' => 1,
@@ -682,6 +665,249 @@ class DatabaseSeeder extends Seeder
             'prov' => 71,
             'kabkota' => 7173,
         ]);
+
+           // dapil_kabkota
+           DB::statement(
+            "INSERT INTO `dapil_kabkota` (`id`, `nama`, `keterangan`, `created_at`, `updated_at`) VALUES
+(11, 'BOLAANG MONGONDOW 1', 'SANG TOMBOLANG - LOLAK', NULL, NULL),
+(12, 'BOLAANG MONGONDOW 2', 'BOLAANG - POIGAR - BOLAANG TIMUR', NULL, NULL),
+(13, 'BOLAANG MONGONDOW 3', 'PASSI BARAT - PASSI TIMUR - BILALANG', NULL, NULL),
+(14, 'BOLAANG MONGONDOW 4', 'LALOYAN', NULL, NULL),
+(15, 'BOLAANG MONGONDOW 5', 'DUMOGA TIMUR - DUMOGA - DUMOGA TENGGARA', NULL, NULL),
+(16, 'BOLAANG MONGONDOW 6', 'DUMOGA BARAT - DUMOGA UTARA - DUMOGA TENGAH', NULL, NULL),
+(21, 'MINAHASA  1', 'TONDANO BARAT - TONDANO TIMUR - TONDANO UTARA - TONDANO SELATAN ', NULL, NULL),
+(22, 'MINAHASA  2', 'ERIS - KOMBI - LEMBEAN TIMUR - KAKAS - REMBOKEN - KAKAS BARAT ', NULL, NULL),
+(23, 'MINAHASA  3', 'LANGOWAN TIMUR - LANGOWAN BARAT - LANGOWAN SELATAN - LANGOWAN UTARA', NULL, NULL),
+(24, 'MINAHASA  4', 'TOMPASO - SONDER - KAWANGKOAN - KAWANKUAN UTARA - KAWANGKOAN BARAT - TOMPASO BARAT', NULL, NULL),
+(25, 'MINAHASA  5', 'TOMBARIRI - MANDOLANG - TOMBARIRI TIMUR', NULL, NULL),
+(26, 'MINAHASA  6', 'PINELENG - TOMBULU', NULL, NULL),
+(31, 'KEP. SANGIHE 1', 'MANGANITU - TAHUNA - TAHUNA BARAT - TAHUNA TIMUR', NULL, NULL),
+(32, 'KEP. SANGIHE 2', 'TABUKAN UTARA - NUSA TABUKAN - TABUKAN TENGAH - KENDAHE - KEPULAUAN MARORE ', NULL, NULL),
+(33, 'KEP. SANGIHE 3', 'MANGANITU SELATAN - TATOARENG - TAMAKO - TABUKAN SELATAN -  TABUKAN SELATAN TENGAH - TABUKAN SELATAN TENGGARA', NULL, NULL),
+(41, 'TALAUD 1', 'BEO - RAINIS - MELONGUANE - BEO UTARA - PULUTAN - MELONGUANE TIMUR - BEO SELATAN', NULL, NULL),
+(42, 'TALAUD 2', 'ESSANG - NANUSA - GEMEH - TAMPAN\'AMMA - MIANGAS - ESSANG SELATAN ', NULL, NULL),
+(43, 'TALAUD 3', 'LIRUNG - KABARUAN - DAMAU - SALIBABU - KALONGAN - MORONGE', NULL, NULL),
+(51, 'MINAHASA SELATAN 1', 'AMURANG - AMURANG BARAT - AMURANG -TIMUR', NULL, NULL),
+(52, 'MINAHASA SELATAN 2', 'TUMPAAN - TARERAN - TATAPAAN - SULUUN TARERAN ', NULL, NULL),
+(53, 'MINAHASA SELATAN 3', 'MODOINDING - TOMPASO BARU - MAESAAN', NULL, NULL),
+(54, 'MINAHASA SELATAN 4', 'RANOYAPO - MOTOLING - KUMELEMBUAI - MOTOLING BARAT - MOTOLING TIMUR', NULL, NULL),
+(55, 'MINAHASA SELATAN 5', 'SINONSAYANG - TENGA', NULL, NULL),
+(61, 'MINAHASA UTARA 1', 'AIRMADIDI - KALAWAT', NULL, NULL),
+(62, 'MINAHASA UTARA 2', 'DIMEMBE - TALAWAAN - LIKUPANG SELATAN', NULL, NULL),
+(63, 'MINAHASA UTARA 3', 'WORI - LIKUPANG BARAT - LIKUPANG TIMUR', NULL, NULL),
+(64, 'MINAHASA UTARA 4', 'KEMA - KAUDITAN', NULL, NULL),
+(71, 'MINAHASA TENGGARA 1', 'RATAHAN - PUSOMAEN - PASAN - RATAHAN TIMUR', NULL, NULL),
+(72, 'MINAHASA TENGGARA 2', 'BELANG - RATATOTOK', NULL, NULL),
+(73, 'MINAHASA TENGGARA 3', 'TOMBATU - TOMBATU TIMUR - TOMBATU UTARA', NULL, NULL),
+(74, 'MINAHASA TENGGARA 4', 'TOULUAAN - TOULUAAN SELATAN - SILIAN RAYA', NULL, NULL),
+(81, 'BOLAANG MONGONDOW UTARA 1', 'KAIDIPANG - PINOGALUMAN', NULL, NULL),
+(82, 'BOLAANG MONGONDOW UTARA 2', 'BOLANGITANG TIMUR - BOLANGITANG BARAT', NULL, NULL),
+(83, 'BOLAANG MONGONDOW UTARA 3', 'SANGKUB - BINTAUNA', NULL, NULL),
+(91, 'SITARO 1', 'SIAU BARAT - SIAU BARAT SELATAN - SIAU BARAT UTARA - SIAU TENGAH ', NULL, NULL),
+(92, 'SITARO 2', 'SIAU TIMUR - SIAU TIMUR SELATAN', NULL, NULL),
+(93, 'SITARO 3', 'TAGULANDANG - TAGULANDANG UTARA - BIARO - TAGULANGDANG SELATAN', NULL, NULL),
+(101, 'BOLAANG MONGONDOW TIMUR 1', 'TUTUYAN - KOTABUNAN', NULL, NULL),
+(102, 'BOLAANG MONGONDOW TIMUR 2', 'NAUNGAN - MOTONGKAD', NULL, NULL),
+(103, 'BOLAANG MONGONDOW TIMUR 3', 'MODAYAG - MODAYANG BARAT - MOOAT', NULL, NULL),
+(111, 'BOLAANG MONGONDOW SELATAN 1', 'BOLAANG UKI - HELUMO', NULL, NULL),
+(112, 'BOLAANG MONGONDOW SELATAN 2', 'PINOLOSIAN - PINOLOSIAN TENGAH - PINOLOSIAN TIMUR ', NULL, NULL),
+(113, 'BOLAANG MONGONDOW SELATAN 3', 'POSIGADAN - TOMINI', NULL, NULL),
+(711, 'KOTA MANADO 1', 'WENANG - WANEA', NULL, NULL),
+(712, 'KOTA MANADO 2', 'SARIO - MALALAYANG', NULL, NULL),
+(713, 'KOTA MANADO 3', 'BUNAKEN - TUMINTING - BUNAKEN KEPULAUAN', NULL, NULL),
+(714, 'KOTA MANADO 4', 'SINGKIL - MAPANGET', NULL, NULL),
+(715, 'KOTA MANADO 5', 'TIKALA - PALDUA', NULL, NULL),
+(721, 'BITUNG 1', 'MAESA', NULL, NULL),
+(722, 'BITUNG 2', 'MADIRI - GIRIAN', NULL, NULL),
+(723, 'BITUNG 3', 'RANOWULU - MATUARI', NULL, NULL),
+(724, 'BITUNG 4', 'LEMBEH SELATAN - AERTEMBAGA - LEMBAH UTARA', NULL, NULL),
+(731, 'TOMOHON 1', 'TOMOHON TENGAH - TOMOHON TIMUR', NULL, NULL),
+(732, 'TOMOHON 2', 'TOMOHON SELATAN ', NULL, NULL),
+(733, 'TOMOHON 3', 'TOMOHON BARAT', NULL, NULL),
+(734, 'TOMOHON 4', 'TOMOHON UTARA', NULL, NULL),
+(741, 'KOTAMOBAGU 1', 'KOTAMOBAGU UTARA', NULL, NULL),
+(742, 'KOTAMOBAGU 2', 'KOTAMOBAGU TIMUR', NULL, NULL),
+(743, 'KOTAMOBAGU 3', 'KOTAMOBAGU SELATAN', NULL, NULL),
+(744, 'KOTAMOBAGU 4', 'KOTAMOBAGU BARAT', NULL, NULL);
+                    "
+        );
+
+ // dapil_kabkota_wilayah
+ DB::statement(
+    "INSERT INTO `dapil_kabkota_wilayah` (`id`, `dapil_kabkota_id`, `prov`, `kabkota`, `kecamatan`, `created_at`, `updated_at`) VALUES
+    (1, '711', '71', '7171', '717104', NULL, NULL),
+    (2, '711', '71', '7171', '717107', NULL, NULL),
+    (3, '712', '71', '7171', '717106', NULL, NULL),
+    (4, '712', '71', '7171', '717109', NULL, NULL),
+    (5, '713', '71', '7171', '717101', NULL, NULL),
+    (6, '713', '71', '7171', '717102', NULL, NULL),
+    (7, '713', '71', '7171', '717110', NULL, NULL),
+    (8, '714', '71', '7171', '717103', NULL, NULL),
+    (9, '714', '71', '7171', '717108', NULL, NULL),
+    (10, '715', '71', '7171', '717105', NULL, NULL),
+    (11, '715', '71', '7171', '717111', NULL, NULL),
+    (12, '61', '71', '7106', '710603', NULL, NULL),
+    (13, '61', '71', '7106', '710608', NULL, NULL),
+    (14, '62', '71', '7106', '710605', NULL, NULL),
+    (15, '62', '71', '7106', '710609', NULL, NULL),
+    (16, '62', '71', '7106', '710610', NULL, NULL),
+    (17, '63', '71', '7106', '710604', NULL, NULL),
+    (18, '63', '71', '7106', '710606', NULL, NULL),
+    (19, '63', '71', '7106', '710607', NULL, NULL),
+    (20, '64', '71', '7106', '710601', NULL, NULL),
+    (21, '64', '71', '7106', '710602', NULL, NULL),
+    (22, '721', '71', '7172', '717207', NULL, NULL),
+    (23, '722', '71', '7172', '717202', NULL, NULL),
+    (24, '722', '71', '7172', '717206', NULL, NULL),
+    (25, '723', '71', '7172', '717203', NULL, NULL),
+    (26, '723', '71', '7172', '717205', NULL, NULL),
+    (27, '724', '71', '7172', '717201', NULL, NULL),
+    (28, '724', '71', '7172', '717204', NULL, NULL),
+    (29, '724', '71', '7172', '717208', NULL, NULL),
+    (30, '31', '71', '7103', '710313', NULL, NULL),
+    (31, '31', '71', '7103', '710317', NULL, NULL),
+    (32, '31', '71', '7103', '710323', NULL, NULL),
+    (33, '31', '71', '7103', '710324', NULL, NULL),
+    (34, '32', '71', '7103', '710308', NULL, NULL),
+    (35, '32', '71', '7103', '710309', NULL, NULL),
+    (36, '32', '71', '7103', '710314', NULL, NULL),
+    (37, '32', '71', '7103', '710316', NULL, NULL),
+    (38, '32', '71', '7103', '710325', NULL, NULL),
+    (39, '33', '71', '7103', '710310', NULL, NULL),
+    (40, '33', '71', '7103', '710311', NULL, NULL),
+    (41, '33', '71', '7103', '710312', NULL, NULL),
+    (42, '33', '71', '7103', '710315', NULL, NULL),
+    (43, '33', '71', '7103', '710319', NULL, NULL),
+    (44, '33', '71', '7103', '710320', NULL, NULL),
+    (45, '41', '71', '7104', '710402', NULL, NULL),
+    (46, '41', '71', '7104', '710403', NULL, NULL),
+    (47, '41', '71', '7104', '710407', NULL, NULL),
+    (48, '41', '71', '7104', '710414', NULL, NULL),
+    (49, '41', '71', '7104', '710415', NULL, NULL),
+    (50, '41', '71', '7104', '710416', NULL, NULL),
+    (51, '41', '71', '7104', '710418', NULL, NULL),
+    (52, '42', '71', '7104', '710404', NULL, NULL),
+    (53, '42', '71', '7104', '710405', NULL, NULL),
+    (54, '42', '71', '7104', '710408', NULL, NULL),
+    (55, '42', '71', '7104', '710410', NULL, NULL),
+    (56, '42', '71', '7104', '710413', NULL, NULL),
+    (57, '42', '71', '7104', '710419', NULL, NULL),
+    (58, '43', '71', '7104', '710401', NULL, NULL),
+    (59, '43', '71', '7104', '710406', NULL, NULL),
+    (60, '43', '71', '7104', '710409', NULL, NULL),
+    (61, '43', '71', '7104', '710411', NULL, NULL),
+    (62, '43', '71', '7104', '710412', NULL, NULL),
+    (63, '43', '71', '7104', '710417', NULL, NULL),
+    (64, '91', '71', '7109', '710902', NULL, NULL),
+    (65, '91', '71', '7109', '710905', NULL, NULL),
+    (66, '91', '71', '7109', '710908', NULL, NULL),
+    (67, '91', '71', '7109', '710909', NULL, NULL),
+    (68, '92', '71', '7109', '710901', NULL, NULL),
+    (69, '92', '71', '7109', '710904', NULL, NULL),
+    (70, '93', '71', '7109', '710903', NULL, NULL),
+    (71, '93', '71', '7109', '710906', NULL, NULL),
+    (72, '93', '71', '7109', '710907', NULL, NULL),
+    (73, '93', '71', '7109', '710910', NULL, NULL),
+    (74, '11', '71', '7101', '710105', NULL, NULL),
+    (75, '11', '71', '7101', '710112', NULL, NULL),
+    (76, '12', '71', '7101', '710113', NULL, NULL),
+    (77, '12', '71', '7101', '710120', NULL, NULL),
+    (78, '12', '71', '7101', '710131', NULL, NULL),
+    (79, '13', '71', '7101', '710119', NULL, NULL),
+    (80, '13', '71', '7101', '710122', NULL, NULL),
+    (81, '13', '71', '7101', '710132', NULL, NULL),
+    (82, '14', '71', '7101', '710114', NULL, NULL),
+    (83, '15', '71', '7101', '710110', NULL, NULL),
+    (84, '15', '71', '7101', '710133', NULL, NULL),
+    (85, '15', '71', '7101', '710134', NULL, NULL),
+    (86, '16', '71', '7101', '710109', NULL, NULL),
+    (87, '16', '71', '7101', '710111', NULL, NULL),
+    (88, '16', '71', '7101', '710135', NULL, NULL),
+    (89, '81', '71', '7108', '710805', NULL, NULL),
+    (90, '81', '71', '7108', '710806', NULL, NULL),
+    (91, '82', '71', '7108', '710803', NULL, NULL),
+    (92, '82', '71', '7108', '710804', NULL, NULL),
+    (93, '83', '71', '7108', '710801', NULL, NULL),
+    (94, '83', '71', '7108', '710802', NULL, NULL),
+    (95, '101', '71', '7110', '711001', NULL, NULL),
+    (96, '101', '71', '7110', '711002', NULL, NULL),
+    (97, '102', '71', '7110', '711003', NULL, NULL),
+    (98, '102', '71', '7110', '711006', NULL, NULL),
+    (99, '103', '71', '7110', '711004', NULL, NULL),
+    (100, '103', '71', '7110', '711005', NULL, NULL),
+    (101, '103', '71', '7110', '711007', NULL, NULL),
+    (102, '111', '71', '7111', '711101', NULL, NULL),
+    (103, '111', '71', '7111', '711106', NULL, NULL),
+    (104, '112', '71', '7111', '711103', NULL, NULL),
+    (105, '112', '71', '7111', '711104', NULL, NULL),
+    (106, '112', '71', '7111', '711105', NULL, NULL),
+    (107, '113', '71', '7111', '711102', NULL, NULL),
+    (108, '113', '71', '7111', '711107', NULL, NULL),
+    (109, '741', '71', '7174', '717401', NULL, NULL),
+    (110, '742', '71', '7174', '717402', NULL, NULL),
+    (111, '743', '71', '7174', '717403', NULL, NULL),
+    (112, '744', '71', '7174', '717404', NULL, NULL),
+    (113, '71', '71', '7107', '710701', NULL, NULL),
+    (114, '71', '71', '7107', '710702', NULL, NULL),
+    (115, '71', '71', '7107', '710711', NULL, NULL),
+    (116, '71', '71', '7107', '710712', NULL, NULL),
+    (117, '72', '71', '7107', '710703', NULL, NULL),
+    (118, '72', '71', '7107', '710704', NULL, NULL),
+    (119, '73', '71', '7107', '710705', NULL, NULL),
+    (120, '73', '71', '7107', '710709', NULL, NULL),
+    (121, '73', '71', '7107', '710710', NULL, NULL),
+    (122, '74', '71', '7107', '710706', NULL, NULL),
+    (123, '74', '71', '7107', '710707', NULL, NULL),
+    (124, '74', '71', '7107', '710708', NULL, NULL),
+    (125, '51', '71', '7105', '710510', NULL, NULL),
+    (126, '51', '71', '7105', '710517', NULL, NULL),
+    (127, '51', '71', '7105', '710518', NULL, NULL),
+    (128, '52', '71', '7105', '710512', NULL, NULL),
+    (129, '52', '71', '7105', '710513', NULL, NULL),
+    (130, '52', '71', '7105', '710519', NULL, NULL),
+    (131, '52', '71', '7105', '710523', NULL, NULL),
+    (132, '53', '71', '7105', '710501', NULL, NULL),
+    (133, '53', '71', '7105', '710502', NULL, NULL),
+    (134, '53', '71', '7105', '710516', NULL, NULL),
+    (135, '54', '71', '7105', '710503', NULL, NULL),
+    (136, '54', '71', '7105', '710507', NULL, NULL),
+    (137, '54', '71', '7105', '710515', NULL, NULL),
+    (138, '54', '71', '7105', '710521', NULL, NULL),
+    (139, '54', '71', '7105', '710522', NULL, NULL),
+    (140, '55', '71', '7105', '710508', NULL, NULL),
+    (141, '55', '71', '7105', '710509', NULL, NULL),
+    (142, '21', '71', '7102', '710201', NULL, NULL),
+    (143, '21', '71', '7102', '710202', NULL, NULL),
+    (144, '21', '71', '7102', '710216', NULL, NULL),
+    (145, '21', '71', '7102', '710218', NULL, NULL),
+    (146, '22', '71', '7102', '710203', NULL, NULL),
+    (147, '22', '71', '7102', '710204', NULL, NULL),
+    (148, '22', '71', '7102', '710205', NULL, NULL),
+    (149, '22', '71', '7102', '710206', NULL, NULL),
+    (150, '22', '71', '7102', '710208', NULL, NULL),
+    (151, '22', '71', '7102', '710220', NULL, NULL),
+    (152, '23', '71', '7102', '710209', NULL, NULL),
+    (153, '23', '71', '7102', '710210', NULL, NULL),
+    (154, '23', '71', '7102', '710217', NULL, NULL),
+    (155, '23', '71', '7102', '710217', NULL, NULL),
+    (156, '24', '71', '7102', '710207', NULL, NULL),
+    (157, '24', '71', '7102', '710211', NULL, NULL),
+    (158, '24', '71', '7102', '710212', NULL, NULL),
+    (159, '24', '71', '7102', '710221', NULL, NULL),
+    (160, '24', '71', '7102', '710222', NULL, NULL),
+    (161, '24', '71', '7102', '710225', NULL, NULL),
+    (162, '25', '71', '7102', '710215', NULL, NULL),
+    (163, '25', '71', '7102', '710223', NULL, NULL),
+    (164, '25', '71', '7102', '710224', NULL, NULL),
+    (165, '26', '71', '7102', '710213', NULL, NULL),
+    (166, '26', '71', '7102', '710214', NULL, NULL),
+    (167, '731', '71', '7173', '717302', NULL, NULL),
+    (168, '731', '71', '7173', '717305', NULL, NULL),
+    (169, '732', '71', '7173', '717301', NULL, NULL),
+    (170, '733', '71', '7173', '717304', NULL, NULL),
+    (171, '734', '71', '7173', '717303', NULL, NULL);
+            "
+);
 
         // wilayah
         DB::statement(

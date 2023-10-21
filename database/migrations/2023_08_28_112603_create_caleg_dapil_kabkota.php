@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->nullable();
             $table->foreignUuid('partai_id')->nullable();
             $table->string('nama')->nullable();
+            $table->string('ktp')->nullable();
             $table->string('no_urut')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('tempat_lahir')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('no_wa')->nullable();
             $table->string('keterangan')->nullable();
             $table->foreignUuid('dapil_kabkota')->nullable();
+            $table->string('subdomain')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });

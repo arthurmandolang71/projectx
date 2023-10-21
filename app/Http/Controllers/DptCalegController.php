@@ -82,7 +82,7 @@ class DptCalegController extends Controller
 
         return view('caleg.dpt.index', [
             'title' => 'Cari Nama DPT 2024',
-            'pemilih' => $dpt->with(['pendukung', 'pendukung.caleg_ri_ref', 'pendukung.caleg_prov_ref', 'pendukung.caleg_kabkota_ref'])->cursorPaginate(300)->withQueryString(),
+            'pemilih' => $dpt->cursorPaginate(300)->withQueryString(),
             'total_get' => $dpt->count(),
             'kabkota_list' => $kabkota_list,
             'select_kabkota' => $select_kabkota,
@@ -101,7 +101,7 @@ class DptCalegController extends Controller
         $dapil_kabkota = $request->session()->get('kabkota_dapil');
         $dapil_kecamatan = $request->session()->get('kecamatan_dapil');
 
-        // dd($dapil_kabkota);
+        // dd($level_caleg);
 
         if ($level_caleg > 1) {
             $kabkota_dapil = $request->session()->get('kabkota_dapil');

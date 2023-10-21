@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('header')
     <link rel="stylesheet" href="{{ asset('') }}assets/vendor/datatables/css/jquery.dataTables.min.css">
@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">DPT</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Penjaringan</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Cari DPT</a></li>
                 </ol>
             </div>
@@ -34,7 +34,7 @@
 
                             <!-- start content -->
                             <div class="container">
-                                <form action="/dptcaleg/index" method="get">
+                                <form action="/dptcaleg" method="get">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="form-label" for="multicol-country">Kabupaten / kota</label>
@@ -120,10 +120,6 @@
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Tps</th>
-                                            <th width="10">RI</th>
-                                            <th>Provinsi</th>
-                                            <th>Kabkota</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,58 +131,11 @@
                                                 <td>{{ $item->kecamatan_ref->nama }}</td>
                                                 <td>{{ $item->kelurahandesa_ref->nama }}</td>
                                                 <td>{{ $item->tps }}</td>
-                                                <td>
-                                                    @php
-                                                        if ($item->pendukung) {
-                                                            $status = 1;
-                                                        } else {
-                                                            $status = 2;
-                                                        }
-                                                    @endphp
-
-                                                    @php
-                                                        if (session()->get('level_caleg') == 1) {
-                                                            if (isset($item->pendukung->caleg_ri)) {
-                                                                echo $item->pendukung->caleg_ri_ref->nama;
-                                                            } else {
-                                                                echo "
-                                                                     <a href='/pendukungcaleg/create/$item->id/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-plus color-info'></i></span></a>
-                                                                ";
-                                                            }
-                                                        } else {
-                                                            echo $item->pendukung->caleg_ri_ref->nama ?? null;
-                                                        }
-                                                    @endphp
                                                 </td>
                                                 <td>
-                                                    @php
-                                                        if (session()->get('level_caleg') == 2) {
-                                                            if (isset($item->pendukung->caleg_prov)) {
-                                                                echo $item->pendukung->caleg_prov_ref->nama;
-                                                            } else {
-                                                                echo "
-                                                                     <a href='/pendukungcaleg/create/$item->id/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-plus color-info'></i></span></a>
-                                                                ";
-                                                            }
-                                                        } else {
-                                                            echo $item->pendukung->caleg_prov_ref->nama ?? null;
-                                                        }
-                                                    @endphp
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        if (session()->get('level_caleg') == 3) {
-                                                            if (isset($item->pendukung->caleg_kabkota)) {
-                                                                echo $item->pendukung->caleg_kabkota_ref->nama;
-                                                            } else {
-                                                                echo "
-                                                                     <a href='/pendukungcaleg/create/$item->id/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-plus color-info'></i></span></a>
-                                                                ";
-                                                            }
-                                                        } else {
-                                                            echo $item->pendukung->caleg_kabkota_ref->nama ?? null;
-                                                        }
-                                                    @endphp
+                                                    <a type='button' class='btn btn-rounded btn-info'><span
+                                                            class='btn-icon-start text-info'><i
+                                                                class='fa fa-plus color-info'></i></span></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -199,9 +148,6 @@
                                             <th>Kecamatan</th>
                                             <th>Kelurahan/Desa</th>
                                             <th>Tps</th>
-                                            <th>RI</th>
-                                            <th>Provinsi</th>
-                                            <th>Kabkota</th>
 
                                         </tr>
                                     </tfoot>
