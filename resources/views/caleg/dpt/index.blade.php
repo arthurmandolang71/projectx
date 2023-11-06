@@ -124,6 +124,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($pemilih as $item)
+                                            @php
+                                                if ($item->pendukung) {
+                                                    $status = 1;
+                                                } else {
+                                                    $status = 2;
+                                                }
+                                            @endphp
+
                                             <tr>
                                                 <td><strong>{{ $item->nama }}</strong></td>
                                                 <td>{{ $item->usia }}</td>
@@ -133,7 +141,8 @@
                                                 <td>{{ $item->tps }}</td>
                                                 </td>
                                                 <td>
-                                                    <a type='button' class='btn btn-rounded btn-info'><span
+                                                    <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                        type='button' class='btn btn-rounded btn-info'><span
                                                             class='btn-icon-start text-info'><i
                                                                 class='fa fa-plus color-info'></i></span></a>
                                                 </td>

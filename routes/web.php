@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\DptCalegController;
 use App\Http\Controllers\CalegPaketController;
+use App\Http\Controllers\PendukungCalegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::resource('/caleg', CalegController::class)->middleware('isAdmin')->except
 
 Route::resource('/calegpaket', CalegPaketController::class)->middleware('isAdmin')->except(['destroy', 'show']);
 
+
+//admin caleg
 Route::controller(DptCalegController::class)->middleware('isCaleg')->group(function () {
     Route::get('/dptcaleg', 'index');
     Route::get('/dptcaleg/dash', 'dashboard');
@@ -49,3 +52,16 @@ Route::controller(DptCalegController::class)->middleware('isCaleg')->group(funct
     Route::get('/get_kelurahandesa/dptcaleg/{id}', 'getKelurahanDesa');
     Route::get('/get_tps/dptcaleg/{id}', 'getTps');
 });
+
+Route::controller(PendukungCalegController::class)->middleware('isCaleg')->group(function () {
+    Route::get('/pendukungcaleg/dash', 'dashboard');
+    Route::get('/pendukungcaleg/index', 'index');
+
+    Route::get('/pendukungcaleg/create/{id_dpt}/{status}', 'create');
+    Route::post('/pendukungcaleg', 'store');
+
+    Route::get('/pendukungcaleg/form_destroy/{id_dpt}', 'form_destroy');
+    Route::delete('/pendukungcaleg/{id}', 'destroy');
+});
+
+// selesai admin caleg

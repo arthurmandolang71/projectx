@@ -46,18 +46,18 @@
         <img src="{{ asset('') }}assets/images/logo/{{ $logo }}" class="logo-abbr" width="53"
             height="53" viewBox="0 0 53 53"> <br>
         <div class="waviy">
-            <span style="--i:1">K</span>
-            <span style="--i:2">A</span>
-            <span style="--i:3">W</span>
-            <span style="--i:4">W</span>
-            <span style="--i:5">A</span>
-            <span style="--i:6">L</span>
-            <span style="--i:7"> </span>
-            <span style="--i:8">S</span>
-            <span style="--i:9">U</span>
-            <span style="--i:10">A</span>
-            <span style="--i:11">R</span>
-            <span style="--i:12">R</span>
+            <span style="--i:1">T</span>
+            <span style="--i:2">E</span>
+            <span style="--i:3">M</span>
+            <span style="--i:4">A</span>
+            <span style="--i:5">N</span>
+            <span style="--i:6"></span>
+            <span style="--i:6"></span>
+            <span style="--i:7">C</span>
+            <span style="--i:8">A</span>
+            <span style="--i:9">L</span>
+            <span style="--i:10">E</span>
+            <span style="--i:11">G</span>
         </div>
     </div>
     <!--*******************

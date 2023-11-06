@@ -90,8 +90,6 @@ class LoginController extends Controller
                 $request->session()->put('color', $partai->color);
 
                 $request->session()->put('level_caleg', $level_caleg);
-
-                $request->session()->put('level_caleg', $level_caleg);
                 $request->session()->put('caleg_id', $caleg->id);
             } else {
                 $request->session()->put('logo', 'logosementara.png');

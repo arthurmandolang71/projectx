@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('header')
     <!-- Material color picker -->
@@ -48,7 +48,7 @@
                                         if ($status == 1) {
                                             $id_dpt_ambil = $dpt->dpt;
                                         }
-                                        
+
                                         if ($status == 2) {
                                             $id_dpt_ambil = $dpt->id;
                                         }
@@ -72,35 +72,35 @@
                                         } else {
                                             $pendukung_ada = false;
                                         }
-                                        
+
                                         $user_update_prov = $ambil_pendukung->user_update_prov ?? '';
                                         $user_update_ri = $ambil_pendukung->user_update_ri ?? '';
-                                        
+
                                     @endphp
 
                                     <div id="smartwizard" class="form-wizard order-create">
                                         <ul class="nav nav-wizard">
                                             <li><a class="nav-link" href="#form">
-                                                    <span>DATA</span>
+                                                    {{-- <span>DATA</span> --}}
                                                 </a></li>
-                                            @php
-                                                
+                                            {{-- @php
+
                                                 // }
                                                 if ($user_update_prov == null or $id_user == $user_update_prov) {
                                                     echo ' <li><a class="nav-link" href="#form_a">
                                                     <span>PROV</span>
                                                 </a></li>';
                                                 }
-                                                
+
                                             @endphp
                                             @php
-                                                
+
                                                 if ($user_update_ri == null or $id_user == $user_update_ri) {
                                                     echo '  <li><a class="nav-link" href="#form_b">
                                                     <span>RI</span>
                                                 </a></li>';
                                                 }
-                                            @endphp
+                                            @endphp --}}
                                         </ul>
 
 
@@ -202,7 +202,8 @@
                                                             Kelamin</label>
                                                         <div class="input-group">
                                                             <select name="jenis_kelamin"
-                                                                class="default-select form-control wide mb-3 @error('jenis_kelamin') is-invalid @enderror">
+                                                                class="default-select form-control wide mb-3 @error('jenis_kelamin') is-invalid @enderror"
+                                                                disabled>
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($jenis_kelamin as $item)
                                                                     @if (old('jenis_kelamin', $dpt->jenis_kelamin) == $item)
@@ -384,11 +385,13 @@
 
 
 
+
+
                                             </div>
 
 
                                             {{-- caleg a --}}
-                                            <div id="form_a" class="tab-pane" role="tabpanel">
+                                            {{-- <div id="form_a" class="tab-pane" role="tabpanel">
 
                                                 @php
                                                     $dapil_id_user = session()->get('dapil_id');
@@ -432,11 +435,11 @@
                                                 </div>
 
 
-                                            </div>
+                                            </div> --}}
 
 
                                             {{-- caleg a --}}
-                                            <div id="form_b" class="tab-pane" role="tabpanel">
+                                            {{-- <div id="form_b" class="tab-pane" role="tabpanel">
 
                                                 <div class="col-xl-12">
                                                     <div class="card">
@@ -474,13 +477,33 @@
                                                             <br> <br> <br> <br> <br> <br>
                                                         </div>
                                                     </div>
-
                                                 </div>
-
-
-                                            </div>
+                                            </div> --}}
 
                                         </div>
+
+                                        <div class="mb-12 col-md-12">
+                                            <label class="text-label form-label" for="validationCustomUsername">Foto
+                                                (ktp/dll)
+                                            </label>
+                                            <div class="input-group">
+                                                <div class="form-file">
+                                                    <input name="foto" type="file"
+                                                        class="form-file-input form-control @error('foto') is-invalid @enderror"
+                                                        id="image1" onchange="priviewImage1()">
+                                                </div>
+                                                <span class="input-group-text">Upload</span>
+                                                @error('foto')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                                <div>
+                                                    <img class="img-preview1 img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3 col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -489,6 +512,7 @@
                                                     Anda yakin akan menambahkan sebagai pendukung ?
                                                 </label>
                                             </div>
+                                            <hr>
                                             <button type="submit" class="btn me-2 btn-primary">Simpan Data</button>
                                             <a href="{{ $url_direct }}" class="btn btn-light">Batal</a>
                                         </div>
@@ -538,6 +562,21 @@
         <!-- Form Steps -->
         <script src="{{ asset('') }}assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
 
+        <script>
+            function priviewImage1() {
+                const image = document.querySelector('#image1');
+                const view = document.querySelector('.img-preview1');
+
+                view.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent) {
+                    view.src = oFREvent.target.result;
+                }
+            }
+        </script>
 
         <script>
             $(document).ready(function() {
