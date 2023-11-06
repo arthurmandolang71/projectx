@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('caleg_pendukung_ri', function (Blueprint $table) {
-            $table->foreignUuid('dpt')->nullable();
+        Schema::table('tim_referensi', function (Blueprint $table) {
+            $table->foreignUuid('user_id_caleg')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('caleg_pendukung_ri', function (Blueprint $table) {
-            $table->dropColumn(['dpt']);
+        Schema::table('tim_referensi', function (Blueprint $table) {
+            $table->dropColumn(['user_id_caleg']);
         });
     }
 };

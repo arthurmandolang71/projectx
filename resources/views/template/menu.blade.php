@@ -93,7 +93,7 @@
                         <span class="nav-text">Relawan</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/calegpaket">Relawan</a></li>
+                        <li><a href="/relawan">Relawan</a></li>
                         <li><a href='/tim'>Tim</a></li>
                     </ul>
                 </li>

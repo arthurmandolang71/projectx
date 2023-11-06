@@ -9,6 +9,7 @@ use App\Http\Controllers\CalegPaketController;
 use App\Http\Controllers\KlasifikasiBantuanController;
 use App\Http\Controllers\KlasifikasiPendukungController;
 use App\Http\Controllers\PendukungCalegController;
+use App\Http\Controllers\RelawanController;
 use App\Http\Controllers\TimController;
 
 /*
@@ -77,5 +78,9 @@ Route::resource('/klasifikasibantuan', KlasifikasiBantuanController::class)->mid
 
 Route::resource('/tim', TimController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
     'tim' => 'tim',
+]);
+
+Route::resource('/relawan', RelawanController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
+    'relawan' => 'relawan',
 ]);
 // selesai admin caleg
