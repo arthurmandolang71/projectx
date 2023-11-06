@@ -94,7 +94,7 @@
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="/calegpaket">Relawan</a></li>
-                        <li><a href='/calegpaket/create'>Tim</a></li>
+                        <li><a href='/tim'>Tim</a></li>
                     </ul>
                 </li>
                 <li>
@@ -103,7 +103,8 @@
                         <span class="nav-text">Pengaturan</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/calegpaket">Klasifkasi Pendukung</a></li>
+                        <li><a href="/klasifikasipendukung">Klasifkasi Pendukung</a></li>
+                        <li><a href="/klasifikasibantuan">Klasifkasi Bantuan</a></li>
                     </ul>
                 </li>
             @endcan

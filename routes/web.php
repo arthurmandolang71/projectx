@@ -6,7 +6,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\DptCalegController;
 use App\Http\Controllers\CalegPaketController;
+use App\Http\Controllers\KlasifikasiBantuanController;
+use App\Http\Controllers\KlasifikasiPendukungController;
 use App\Http\Controllers\PendukungCalegController;
+use App\Http\Controllers\TimController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +67,15 @@ Route::controller(PendukungCalegController::class)->middleware('isCaleg')->group
     Route::delete('/pendukungcaleg/{id}', 'destroy');
 });
 
+Route::resource('/klasifikasipendukung', KlasifikasiPendukungController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
+    'KlasifikasiPendukung' => 'KlasifikasiPendukung',
+]);
+
+Route::resource('/klasifikasibantuan', KlasifikasiBantuanController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
+    'KlasifikasiBantuan' => 'KlasifikasiBantuan',
+]);
+
+Route::resource('/tim', TimController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
+    'tim' => 'tim',
+]);
 // selesai admin caleg
