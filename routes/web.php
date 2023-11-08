@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TimController;
 use App\Http\Controllers\CalegController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RelawanController;
 use App\Http\Controllers\DptCalegController;
 use App\Http\Controllers\CalegPaketController;
+use App\Http\Controllers\TargetCalegController;
+use App\Http\Controllers\PendukungCalegController;
 use App\Http\Controllers\KlasifikasiBantuanController;
 use App\Http\Controllers\KlasifikasiPendukungController;
-use App\Http\Controllers\PendukungCalegController;
-use App\Http\Controllers\RelawanController;
-use App\Http\Controllers\TimController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,4 +84,10 @@ Route::resource('/tim', TimController::class)->middleware('isCaleg')->except(['d
 Route::resource('/relawan', RelawanController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
     'relawan' => 'relawan',
 ]);
+
+Route::controller(TargetCalegController::class)->middleware('isCaleg')->group(function () {
+    Route::get('/target/edit', 'edit');
+    Route::put('/target', 'update');
+});
+
 // selesai admin caleg

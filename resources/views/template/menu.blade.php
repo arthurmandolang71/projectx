@@ -105,6 +105,7 @@
                     <ul aria-expanded="false">
                         <li><a href="/klasifikasipendukung">Klasifkasi Pendukung</a></li>
                         <li><a href="/klasifikasibantuan">Klasifkasi Bantuan</a></li>
+                        <li><a href="/target/edit">Target Pendukung</a></li>
                     </ul>
                 </li>
             @endcan
