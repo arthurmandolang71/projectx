@@ -39,7 +39,6 @@
                                     </span>Tambah Relawan</a>
                             </div>
 
-
                             <div class="table-responsive">
                                 <table id="example2" class="display" style="width:100%">
                                     <thead>

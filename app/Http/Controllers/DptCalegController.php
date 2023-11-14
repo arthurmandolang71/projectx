@@ -68,9 +68,23 @@ class DptCalegController extends Controller
             $cari_nama = NULL;
         }
 
-        $dpt = Dpt::with('kabkota_ref', 'kecamatan_ref', 'kelurahandesa_ref')
+        $dpt = Dpt::with(['kabkota_ref', 'kecamatan_ref', 'kelurahandesa_ref'])
             ->orderBy("nama", "asc")
             ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
+
+        if ($level_caleg == 1) {
+            $dpt->with('pendukung', 'pendukung.pendukung_caleg_ri');
+        }
+
+        if ($level_caleg == 2) {
+            $dpt->with('pendukung', 'pendukung.pendukung_caleg_prov');
+        }
+
+        if ($level_caleg == 3) {
+            // dd('test');
+            $dpt->with('pendukung', 'pendukung.pendukung_caleg_kabkota');
+        }
+
 
 
         if ($level_caleg > 1) {
@@ -89,6 +103,7 @@ class DptCalegController extends Controller
             'select_kecamatan' => $select_kecamatan,
             'select_kelurahandesa' => $select_kelurahandesa,
             'select_tps' => $select_tps,
+            'level_caleg' =>  $level_caleg,
             'cari_nama' => $cari_nama,
         ]);
     }

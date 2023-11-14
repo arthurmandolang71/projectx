@@ -74,8 +74,6 @@ class RelawanController extends Controller
             $validasi['foto_profil'] = ['image', 'file', 'mimes:jpeg,png,jpg', 'max:5024'];
         }
 
-
-
         $validateData = $request->validate($validasi);
 
         if ($request->file('foto_relawan')) {

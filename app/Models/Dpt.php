@@ -121,6 +121,11 @@ class Dpt extends Model
         return $this->hasOne(Wilayah::class, 'id', 'kelurahan_desa');
     }
 
+    public function pendukung(): HasOne
+    {
+        return $this->hasOne(CalegPendukung::class, 'dpt', 'id');
+    }
+
     // public function pendukung(): HasOne
     // {
     //     return $this->hasOne(CalegPendukung::class, 'dpt', 'id');

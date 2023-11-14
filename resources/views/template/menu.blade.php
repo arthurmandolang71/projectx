@@ -83,8 +83,8 @@
                         <span class="nav-text">Penyaringan</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="/caledpt">Penyaringan</a></li>
-                        <li><a href='/calegdpt/dash'>Dashboard</a></li>
+                        <li><a href="/pendukungcaleg/index">Penyaringan</a></li>
+                        <li><a href='/pendukungcaleg/dash?prov=71'>Dashboard</a></li>
                     </ul>
                 </li>
                 <li>

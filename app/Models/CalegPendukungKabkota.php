@@ -2,12 +2,77 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CalegPendukungKabkota extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'caleg_pendukung_kabkota';
+    protected $fillable = [];
+    protected $guarded = ['id'];
+    protected $with = ['pendukung_ref'];
+
+    public function scopeCari($query, array $filters)
+    {
+
+        $caleg_id = session()->get('caleg_id');
+
+        //kabkota filter
+        // jika caleg daerah
+
+        $query->where('celeg_id', $caleg_id);
+
+        $kabkota = $filters['kabkota'] ?? false;
+        $query->when(
+            $kabkota,
+            fn ($query, $kabkota) =>
+            $query->where('kabkota', $kabkota)
+        );
+
+        $kecamatan = $filters['kecamatan'] ?? false;
+        $query->when(
+            $kecamatan,
+            fn ($query) =>
+            $query->whereHas('pendukung_ref', function ($q, $kecamatan) {
+                $q->where('kecamatan', $kecamatan);
+            })
+            // $query->where('kecamatan', $kecamatan)
+        );
+
+
+        $kelurahandesa = $filters['kelurahandesa'] ?? false;
+        $query->when(
+            $kelurahandesa,
+            fn ($query, $kelurahandesa) =>
+            $query->where('kelurahan_desa', $kelurahandesa)
+        );
+
+        $tps = $filters['tps'] ?? false;
+        if ($tps) {
+            $tps_string = sprintf('%03d', $filters['tps']) ?? false;
+        } else {
+            $tps_string = NULL;
+        }
+
+        $query->when(
+            $tps_string,
+            fn ($query, $tps_string) =>
+            $query->where('tps', $tps_string)
+        );
+
+        $nama = $filters['cari_nama'] ?? false;
+        $query->when(
+            $nama,
+            fn ($query, $nama) =>
+            $query->where('nama', 'like', "%$nama%")
+        );
+    }
+
+    public function pendukung_ref(): HasOne
+    {
+        return $this->hasOne(CalegPendukung::class, 'dpt', 'dpt');
+    }
 }

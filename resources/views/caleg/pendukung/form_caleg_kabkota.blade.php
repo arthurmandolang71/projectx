@@ -139,8 +139,8 @@
                                                         <input name="ktp" value="{{ old('ktp', $dpt->ktp) }}"
                                                             type="text"
                                                             class="form-control  @error('ktp') is-invalid @enderror"
-                                                            id="validationCustomUsername"
-                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)">
+                                                            id=""
+                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)" />
                                                         @error('ktp')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
@@ -285,7 +285,7 @@
                                                         <label class="text-label form-label"
                                                             for="validationCustomUsername">Pekerjaan</label>
                                                         <div class="basic-form">
-                                                            <select name="pekerjaan" id="single-select"
+                                                            <select name="pekerjaan" id="single-select2"
                                                                 class="single-select-placeholder js-states @error('pekerjaan') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($pekerjaan as $item)
@@ -310,6 +310,89 @@
                                                 </div>
 
                                                 <hr>
+
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Klasifikasi Pemilih</h4>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Referensi</label>
+                                                        <div class="basic-form">
+                                                            <select name="referensi_id" id="single-selecteff"
+                                                                class="single-select-placeholder js-states @error('referensi_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($referensi as $item)
+                                                                    @if (old('referensi_id', $dpt->referensi_id) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('referensi_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Klasifikasi Pendukung</label>
+                                                        <div class="basic-form">
+                                                            <select name="klasifikasi_id" id="single-selecte"
+                                                                class="single-select-placeholder js-states @error('klasifikasi_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($klasifikasi as $item)
+                                                                    @if (old('klasifikasi_id', $dpt->klasifikasi_id) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('klasifikasi_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Bantuan</label>
+                                                        <div class="basic-form">
+                                                            <select name="klasifikasi_bantuan_id" id="single-select"
+                                                                class="single-select-placeholder js-states @error('klasifikasi_bantuan_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($bantuan as $item)
+                                                                    @if (old('klasifikasi_bantuan_id', $dpt->klasifikasi_bantuan_id) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('klasifikasi_bantuan_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                </div>
 
 
                                                 <div class="card-header">

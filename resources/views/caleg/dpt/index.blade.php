@@ -141,10 +141,39 @@
                                                 <td>{{ $item->tps }}</td>
                                                 </td>
                                                 <td>
-                                                    <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
-                                                        type='button' class='btn btn-rounded btn-info'><span
-                                                            class='btn-icon-start text-info'><i
-                                                                class='fa fa-plus color-info'></i></span></a>
+                                                    @if ($level_caleg == 1)
+                                                        @if ($item->pendukung->pendukung_caleg_ri)
+                                                            <span>sudah di input</span>
+                                                        @else
+                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                                type='button' class='btn btn-rounded btn-info'><span
+                                                                    class='btn-icon-start text-info'><i
+                                                                        class='fa fa-plus color-info'></i></span></a>
+                                                        @endif
+                                                    @endif
+
+                                                    @if ($level_caleg == 2)
+                                                        @if ($item->pendukung->pendukung_caleg_prov)
+                                                            <span>sudah di input</span>
+                                                        @else
+                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                                type='button' class='btn btn-rounded btn-info'><span
+                                                                    class='btn-icon-start text-info'><i
+                                                                        class='fa fa-plus color-info'></i></span></a>
+                                                        @endif
+                                                    @endif
+
+                                                    @if ($level_caleg == 3)
+                                                        @if ($item->pendukung->pendukung_caleg_kabkota ?? null)
+                                                            <span>sudah di input</span>
+                                                        @else
+                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                                type='button' class='btn btn-rounded btn-info'><span
+                                                                    class='btn-icon-start text-info'><i
+                                                                        class='fa fa-plus color-info'></i></span></a>
+                                                        @endif
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                         @endforeach

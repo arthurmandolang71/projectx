@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('header')
     <link rel="stylesheet" href="{{ asset('') }}assets/vendor/datatables/css/jquery.dataTables.min.css">
@@ -120,53 +120,28 @@
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Tps</th>
-                                            <th width="10">RI</th>
-                                            <th>Provinsi</th>
-                                            <th>Kabkota</th>
-
+                                            <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($pendukung as $item)
                                             <tr>
-                                                <td><strong>{{ $item->nama }}</strong></td>
-                                                <td>{{ $item->usia }}</td>
-                                                <td>{{ $item->kabkota_ref->nama }}</td>
-                                                <td>{{ $item->kecamatan_ref->nama }}</td>
-                                                <td>{{ $item->kelurahandesa_ref->nama }}</td>
-                                                <td>{{ $item->tps }}</td>
+                                                <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
+                                                <td>{{ $item->pendukung_ref->usia }}</td>
+                                                <td>{{ $item->pendukung_ref->kabkota_ref->nama }}</td>
+                                                <td>{{ $item->pendukung_ref->kecamatan_ref->nama }}</td>
+                                                <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
+                                                <td>{{ $item->pendukung_ref->tps }}</td>
                                                 <td>
                                                     @php
                                                         $status = 1;
                                                     @endphp
+                                                    <a href='/pendukungcaleg/edit/{{ $item->id }}/{{ $status }}'
+                                                        type='button' class='btn btn-rounded btn-info'><span
+                                                            class='btn-icon-start text-info'><i
+                                                                class='fa fa-edit color-info'></i></span></a>
+                                                </td>
 
-                                                    @php
-                                                        if (session()->get('level_caleg') == 1) {
-                                                            echo "<a href='/pendukungcaleg/create/$item->dpt/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-edit color-info'></i></span></a>";
-                                                        } else {
-                                                            echo $item->caleg_ri_ref->nama ?? null;
-                                                        }
-                                                    @endphp
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        if (session()->get('level_caleg') == 2) {
-                                                            echo "<a href='/pendukungcaleg/create/$item->dpt/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-edit color-info'></i></span></a>";
-                                                        } else {
-                                                            echo $item->caleg_prov_ref->nama ?? null;
-                                                        }
-                                                    @endphp
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        if (session()->get('level_caleg') == 3) {
-                                                            echo "<a href='/pendukungcaleg/create/$item->dpt/$status' type='button' class='btn btn-rounded btn-info'><span class='btn-icon-start text-info'><i class='fa fa-edit color-info'></i></span></a>";
-                                                            echo "<a href='/pendukungcaleg/form_destroy/$item->dpt' type='button' class='btn btn-rounded btn-danger'><span class='btn-icon-start text-danger'><i class='fa fa-trash color-danger'></i></span></a>";
-                                                        } else {
-                                                            echo $item->caleg_kabkota_ref->nama ?? null;
-                                                        }
-                                                    @endphp
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -176,12 +151,9 @@
                                             <th>Umur</th>
                                             <th>Kabkota</th>
                                             <th>Kecamatan</th>
-                                            <th>Kelurahan/Desa</th>
+                                            <th>Kel./Desa</th>
                                             <th>Tps</th>
-                                            <th>RI</th>
-                                            <th>Provinsi</th>
-                                            <th>Kabkota</th>
-
+                                            <th>#</th>
                                         </tr>
                                     </tfoot>
                                 </table>
