@@ -75,4 +75,18 @@ class CalegPendukungKabkota extends Model
     {
         return $this->hasOne(CalegPendukung::class, 'dpt', 'dpt');
     }
+
+    public function klasifikasi_ref(): HasOne
+    {
+        return $this->hasOne(KlasifikasiPendukung::class, 'id', 'klasifikasi_id');
+    }
+
+    public function bantuan_ref(): HasOne
+    {
+        return $this->hasOne(KlasifikasiBantuan::class, 'id', 'klasifikasi_bantuan_id');
+    }
+    public function relawan_ref(): HasOne
+    {
+        return $this->hasOne(TimReferensi::class, 'id', 'referensi_id');
+    }
 }

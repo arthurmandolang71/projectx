@@ -119,6 +119,9 @@
                                             <th>Kabkota</th>
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
+                                            <th>Klasifikasi</th>
+                                            <th>Program</th>
+                                            <th>Referensi</th>
                                             <th>Tps</th>
                                             <th>#</th>
                                         </tr>
@@ -131,12 +134,15 @@
                                                 <td>{{ $item->pendukung_ref->kabkota_ref->nama }}</td>
                                                 <td>{{ $item->pendukung_ref->kecamatan_ref->nama }}</td>
                                                 <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
+                                                <td>{{ $item->klasifikasi_ref->nama ?? null }}</td>
+                                                <td>{{ $item->bantuan_ref->nama ?? null }}</td>
+                                                <td>{{ $item->relawan_ref->nama ?? null }}</td>
                                                 <td>{{ $item->pendukung_ref->tps }}</td>
                                                 <td>
                                                     @php
                                                         $status = 1;
                                                     @endphp
-                                                    <a href='/pendukungcaleg/edit/{{ $item->id }}/{{ $status }}'
+                                                    <a href='/pendukungcaleg/create/{{ $item->dpt }}/{{ $status }}'
                                                         type='button' class='btn btn-rounded btn-info'><span
                                                             class='btn-icon-start text-info'><i
                                                                 class='fa fa-edit color-info'></i></span></a>
@@ -152,6 +158,9 @@
                                             <th>Kabkota</th>
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
+                                            <th>Klasifikasi</th>
+                                            <th>Program</th>
+                                            <th>Referensi</th>
                                             <th>Tps</th>
                                             <th>#</th>
                                         </tr>

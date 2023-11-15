@@ -136,7 +136,8 @@
                                                         <span class="input-group-text"> <i
                                                                 class="bi bi-credit-card-fill"></i>
                                                         </span>
-                                                        <input name="ktp" value="{{ old('ktp', $dpt->ktp) }}"
+                                                        <input name="ktp"
+                                                            value="{{ old('ktp', $dpt->pendukung_caleg_kabkota->ktp ?? null) }}"
                                                             type="text"
                                                             class="form-control  @error('ktp') is-invalid @enderror"
                                                             id=""
@@ -161,7 +162,7 @@
                                                                     class="bi bi-house-door-fill"></i>
                                                             </span>
                                                             <input name="tempat_lahir"
-                                                                value="{{ old('tempat_lahir', $dpt->tempat_lahir) }}"
+                                                                value="{{ old('tempat_lahir', $dpt->pendukung_caleg_kabkota->tempat_lahir ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('tempat_lahir') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -182,7 +183,7 @@
                                                                     class="bi bi-calendar4-event"></i>
                                                             </span>
                                                             <input name="tanggal_lahir"
-                                                                value="{{ old('tanggal_lahir', $dpt->tanggal_lahir) }}"
+                                                                value="{{ old('tanggal_lahir', $dpt->pendukung_caleg_kabkota->tanggal_lahir ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('tanggal_lahir') is-invalid @enderror"
                                                                 placeholder="Masukan tanggal lahir" id="mdate">
@@ -233,7 +234,7 @@
                                                                 class="default-select form-control wide mb-3 @error('status_perkawinan') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($status_perkawinan as $item)
-                                                                    @if (old('status_perkawinan', $dpt->status_perkawinan) == $item)
+                                                                    @if (old('status_perkawinan', $dpt->pendukung_caleg_kabkota->status_perkawinan ?? null) == $item)
                                                                         <option value="{{ $item }}" selected>
                                                                             {{ $item }}
                                                                         </option>
@@ -264,7 +265,7 @@
                                                                 class="default-select form-control wide mb-3 @error('agama') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($agama as $item)
-                                                                    @if (old('agama', $dpt->agama) == $item->id)
+                                                                    @if (old('agama', $dpt->pendukung_caleg_kabkota->agama ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -289,7 +290,7 @@
                                                                 class="single-select-placeholder js-states @error('pekerjaan') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($pekerjaan as $item)
-                                                                    @if (old('pekerjaan', $dpt->pekerjaan) == $item->id)
+                                                                    @if (old('pekerjaan', $dpt->pendukung_caleg_kabkota->pekerjaan ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -324,7 +325,7 @@
                                                                 class="single-select-placeholder js-states @error('referensi_id') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($referensi as $item)
-                                                                    @if (old('referensi_id', $dpt->referensi_id) == $item->id)
+                                                                    @if (old('referensi_id', $dpt->pendukung_caleg_kabkota->referensi_id ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -349,7 +350,7 @@
                                                                 class="single-select-placeholder js-states @error('klasifikasi_id') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($klasifikasi as $item)
-                                                                    @if (old('klasifikasi_id', $dpt->klasifikasi_id) == $item->id)
+                                                                    @if (old('klasifikasi_id', $dpt->pendukung_caleg_kabkota->klasifikasi_id ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -374,7 +375,7 @@
                                                                 class="single-select-placeholder js-states @error('klasifikasi_bantuan_id') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($bantuan as $item)
-                                                                    @if (old('klasifikasi_bantuan_id', $dpt->klasifikasi_bantuan_id) == $item->id)
+                                                                    @if (old('klasifikasi_bantuan_id', $dpt->pendukung_caleg_kabkota->klasifikasi_bantuan_id ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -406,7 +407,8 @@
                                                         <div class="input-group">
                                                             <span class="input-group-text"> <i class="bi bi-envelope"></i>
                                                             </span>
-                                                            <input name="no_wa" value="{{ old('no_wa', $dpt->no_wa) }}"
+                                                            <input name="no_wa"
+                                                                value="{{ old('no_wa', $dpt->pendukung_caleg_kabkota->no_wa ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('no_wa') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -425,7 +427,8 @@
                                                             <span class="input-group-text">
                                                                 <i class="bi bi-telephone-fill"></i>
                                                             </span>
-                                                            <input name="no_hp" value="{{ old('no_hp', $dpt->no_hp) }}"
+                                                            <input name="no_hp"
+                                                                value="{{ old('no_hp', $dpt->pendukung_caleg_kabkota->no_hp ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('no_hp') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -450,8 +453,8 @@
                                                             <br>
                                                             <span class="input-group-text"> <i class="bi bi-house"></i>
                                                             </span>
-                                                            <input name="nama"
-                                                                value="{{ old('alamat_detail', $dpt->detail) }}"
+                                                            <input name="alamat_detail"
+                                                                value="{{ old('alamat_detail', $dpt->pendukung_caleg_kabkota->alamat_detail ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('alamat_detail') is-invalid @enderror"
                                                                 id="validationCustomUsername"

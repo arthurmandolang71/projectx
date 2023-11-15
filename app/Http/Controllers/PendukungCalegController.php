@@ -294,7 +294,7 @@ class PendukungCalegController extends Controller
         }
 
         if ($level_caleg == 3) {
-            $pendukung = CalegPendukungKabkota::with('pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
+            $pendukung = CalegPendukungKabkota::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 // ->orderBy("pendukung_ref.nama", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
         }
@@ -337,7 +337,15 @@ class PendukungCalegController extends Controller
         // dd($user_id);
 
         if ($id_status == 1) {
-            $dpt = CalegPendukung::where('dpt', $id_dpt)->first();
+            $level_caleg = $request->session()->get('level_caleg');
+            if ($level_caleg == 1) {
+                $dpt = CalegPendukung::with(['pendukung_caleg_ri'])->where('dpt', $id_dpt)->first();
+            } elseif ($level_caleg == 2) {
+                $dpt = CalegPendukung::with(['pendukung_caleg_prov'])->where('dpt', $id_dpt)->first();
+            } elseif ($level_caleg == 3) {
+                $dpt = CalegPendukung::with(['pendukung_caleg_kabkota'])->where('dpt', $id_dpt)->first();
+                // dd($id_dpt);
+            }
         }
 
         if ($id_status == 2) {
@@ -486,7 +494,13 @@ class PendukungCalegController extends Controller
             // }
         } elseif ($level_caleg == 3) {
             // $pendukung['dapil_kabkota'] = $dapil_id;
-            CalegPendukungKabkota::create($pendukung_caleg);
+            $cek_sudah_input = CalegPendukungKabkota::where('dpt', $request->dpt_id)->where('celeg_id', $caleg_id)->first();
+            if ($cek_sudah_input) {
+                CalegPendukungKabkota::where('id', $cek_sudah_input->id)->update($pendukung_caleg);
+            } else {
+                CalegPendukungKabkota::create($pendukung_caleg);
+            }
+
             // if ($request->caleg_prov != 'TIDAK MEMILIH CALEG DPR PROVINSI') {
             //     $data['caleg_prov'] = $request->caleg_prov;
             //     $data['dapil_prov'] = CalegProv::where('id', $request->caleg_prov)->first()->dapil_prov;
