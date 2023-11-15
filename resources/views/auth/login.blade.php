@@ -8,10 +8,10 @@
     <meta name="author" content="" />
     <meta name="robots" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dompet : Payment Admin Template" />
-    <meta property="og:title" content="Dompet : Payment Admin Template" />
-    <meta property="og:description" content="Dompet : Payment Admin Template" />
-    <meta property="og:image" content="https://dompet.dexignlab.com/xhtml/social-image.png" />
+    <meta name="description" content="Teman Caleg" />
+    <meta property="og:title" content="Teman Caleg" />
+    <meta property="og:description" content="Teman Caleg" />
+    <meta property="og:image" content="{{ asset('') }}assets/images/logosementara.png" />
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
