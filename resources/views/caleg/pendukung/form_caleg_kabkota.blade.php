@@ -585,7 +585,8 @@
                                                     </div>
                                                 @enderror
                                                 <div>
-                                                    <img class="img-preview1 img-fluid">
+                                                    <img src="{{ $dpt->pendukung_caleg_kabkota->alamat_detail ?? null }}"
+                                                        class="img-preview1 img-fluid">
                                                 </div>
                                             </div>
                                         </div>

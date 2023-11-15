@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Dpt;
 use App\Models\Tps;
-use App\Models\CalegRi;
 use App\Models\DapilRi;
 use App\Models\Kabkota;
 use App\Models\Wilayah;
 use App\Models\Provinsi;
 use App\Models\RefAgama;
-use App\Models\CalegProv;
 use App\Models\DapilProv;
 use App\Models\Kecamatan;
-use App\Models\CalegKabkota;
 use App\Models\DapilKabkota;
 use App\Models\RefPekerjaan;
 use App\Models\TimReferensi;
@@ -27,7 +24,7 @@ use Illuminate\Routing\Controller;
 use App\Models\KlasifikasiPendukung;
 use App\Models\CalegPendukungKabkota;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Builder;
+
 
 class PendukungCalegController extends Controller
 {
@@ -61,14 +58,38 @@ class PendukungCalegController extends Controller
         ) {
             $get_data = Wilayah::where('id', request('kelurahandesa'))->first();
             $get_data_turunan = Tps::where('wilayah_id', request('kelurahandesa'))->get();
-            $pendukung = CalegPendukung::cari([])->where('kelurahan_desa', request('kelurahandesa'))->get();
+
 
             if ($level_caleg == 1) {
-                $pendukung = CalegPendukungRi::cari([])->where('kelurahan_desa', request('kelurahandesa'))->get();
+                $pendukung = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
             } elseif ($level_caleg == 2) {
-                $pendukung = CalegPendukungProv::cari([])->where('kelurahan_desa', request('kelurahandesa'))->get();
+                $pendukung = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungProv::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
             } elseif ($level_caleg == 3) {
-                $pendukung = CalegPendukungKabkota::cari([])->where('kelurahan_desa', request('kelurahandesa'))->get();
+                $pendukung = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
             }
 
             $where_turunan = 'tps';
@@ -83,11 +104,38 @@ class PendukungCalegController extends Controller
             $get_data_turunan = Wilayah::where('parent_id', request('kecamatan'))->get();
 
             if ($level_caleg == 1) {
-                $pendukung = CalegPendukungRi::cari([])->where('kecamatan', request('kecamatan'))->get();
+
+                $pendukung = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungRi::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
             } elseif ($level_caleg == 2) {
-                $pendukung = CalegPendukungProv::cari([])->where('kecamatan', request('kecamatan'))->get();
+
+                $pendukung = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungProv::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
             } elseif ($level_caleg == 3) {
-                $pendukung = CalegPendukungKabkota::cari([])->where('kecamatan', request('kecamatan'))->get();
+
+                $pendukung = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari(request(['kabkota', 'kecamatan']))->with(['pendukung_ref']);
             }
 
             $where_turunan = 'kelurahan_desa';
@@ -102,7 +150,33 @@ class PendukungCalegController extends Controller
             if ($level_caleg == 3) {
                 $nama_dapil = Kabkota::whereIn('id', $dapil_kabkota)->first()->nama;
                 $get_data_turunan = Kecamatan::whereIn('id', $dapil_kecamatan)->get();
-                $pendukung = CalegPendukungKabkota::cari([])->where('kabkota', $dapil_kabkota)->get();
+                // $pendukung = CalegPendukungKabkota::cari([])->where('kabkota', $dapil_kabkota)->get();
+
+                $pendukung = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });
+                $jumlah_PB = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+                $jumlah_BB = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+                $jumlah_X = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+                $jumlah_Y = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+                $jumlah_Z = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref'])->whereHas('pendukung_ref', function ($query) use ($dapil_kabkota) {
+                    $query->where('kabkota', $dapil_kabkota);
+                });;
                 // dd($pendukung);
             }
             // dpr provinsi dan dpr ri
@@ -111,9 +185,26 @@ class PendukungCalegController extends Controller
                 $get_data_turunan = Kecamatan::where('parent_id', request('kabkota'))->get();
 
                 if ($level_caleg == 1) {
-                    $pendukung = CalegPendukungRi::cari([])->where('kabkota', request('kabkota'))->get();
+                    $pendukung = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_PB = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_BB = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_X = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_Y = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_Z = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+
+                    $jenis_kelamin['L'] = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jenis_kelamin['P'] = CalegPendukungRi::cari(request(['kabkota']))->with(['pendukung_ref']);
                 } elseif ($level_caleg == 2) {
-                    $pendukung = CalegPendukungProv::cari([])->where('kabkota', request('kabkota'))->get();
+
+                    $pendukung = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_PB = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_BB = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_X = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_Y = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jumlah_Z = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+
+                    $jenis_kelamin['L'] = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
+                    $jenis_kelamin['P'] = CalegPendukungProv::cari(request(['kabkota']))->with(['pendukung_ref']);
                 }
             }
 
@@ -149,27 +240,37 @@ class PendukungCalegController extends Controller
             $get_data->nama = $nama_dapil;
 
             if ($level_caleg == 1) {
-                $pendukung = CalegPendukungRi::cari([])->get();
+                $pendukung = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
             } elseif ($level_caleg == 2) {
-                $pendukung = CalegPendukungProv::cari([])->get();
+
+                $pendukung = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
             } elseif ($level_caleg == 3) {
-                $pendukung = CalegPendukungKabkota::cari([])->get();
-                $jenis_kelamin['L'] = CalegPendukungKabkota::with(['pendukung_ref' => function ($query, $dapil_kecamatan) {
-                    $query->select('jenis_kelamin');
-                    $query->where('jenis_kelamin', 'L');
-                    $query->whereIn('kecamatan', $dapil_kecamatan);
-                    $query->count();
-                }]);
 
-                dd($jenis_kelamin['L']);
+                $pendukung = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jumlah_PB = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jumlah_BB = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jumlah_X = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jumlah_Y = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jumlah_Z = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
 
-                $jenis_kelamin['P'] = CalegPendukungKabkota::with(['pendukung_ref' => function ($query, $dapil_kecamatan) {
-                    $query->select('jenis_kelamin');
-                    $query->where('jenis_kelamin', 'P');
-                    $query->whereIn('kecamatan', $dapil_kecamatan);
-                    $query->count();
-                }]);
-                // $jenis_kelamin['P'] = CalegPendukungKabkota::select('pendukung_ref.jenis_kelamin')->has('pendukung_ref.jenis_kelamin', 'P')->whereIn('pendukung_ref.kecamatan', $dapil_kecamatan)->count();
+                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
             }
         }
 
@@ -178,26 +279,29 @@ class PendukungCalegController extends Controller
         $list_turunan = [];
         foreach ($get_data_turunan as $item) {
 
+            $itemid = $item->id;
+
             if ($level_caleg == 1) {
-                $pendukung_turunan = CalegPendukungRi::cari([]);
+                $pendukung_turunan = CalegPendukungRi::cari([])->with(['pendukung_ref']);
             } elseif ($level_caleg == 2) {
-                $pendukung_turunan = CalegPendukungProv::cari([]);
+                $pendukung_turunan = CalegPendukungProv::cari([])->with(['pendukung_ref']);
             } elseif ($level_caleg == 3) {
-                $pendukung_turunan = CalegPendukungKabkota::cari([]);
+                $pendukung_turunan = CalegPendukungKabkota::cari([])->with(['pendukung_ref']);
             }
 
             if ($where_turunan == 'tps') {
-                $item->nama = sprintf('%03d', $item->nama);
 
-
-                $fresh_get = $pendukung_turunan->where('tps', $item->nama)
-                    ->where('kelurahan_desa', $item->wilayah_id)
-                    ->count();
+                $itemnama = $item->nama;
+                $itemwilayahid = $item->wilayah_id;
+                $fresh_get = $pendukung_turunan->whereHas('pendukung_ref', function ($query) use ($itemnama, $itemwilayahid) {
+                    $query->where('kelurahan_desa', $itemwilayahid)
+                        ->where('tps', $itemnama);
+                })->count();
             } else {
-                // $fresh_get = $pendukung_turunan->where($where_turunan, $item->id)->count();
-                // $itemid = $item->id;
-                $fresh_get = $pendukung_turunan->has('pendukung_ref.kecamatan_ref', $item->id)->count();
-                // dd($fresh_get);
+
+                $fresh_get = $pendukung_turunan->whereHas('pendukung_ref', function ($query) use ($where_turunan, $itemid) {
+                    $query->where("$where_turunan", $itemid);
+                })->count();
             }
 
             array_push($list_turunan, [
@@ -206,25 +310,48 @@ class PendukungCalegController extends Controller
             ]);
         }
 
-        $jumlah_PB = $pendukung->where('usia', '>=', 78);
-        $jumlah_BB = $pendukung->whereBetween('usia', [59, 77]);
-        $jumlah_X = $pendukung->whereBetween('usia', [43, 58]);
-        $jumlah_Y = $pendukung->whereBetween('usia', [27, 42]);
-        $jumlah_Z = $pendukung->whereBetween('usia', [11, 26]);
+        $jumlah_PB = $jumlah_PB->whereHas('pendukung_ref', function ($query) {
+            $query->where('usia', 78);
+        })->count();
 
-        $jenis_kelamin['L'] = Dpt::select('jenis_kelamin')->where('jenis_kelamin', 'L')->whereIn('kecamatan', $dapil_kecamatan)->count();
-        $jenis_kelamin['P'] = Dpt::select('jenis_kelamin')->where('jenis_kelamin', 'P')->whereIn('kecamatan', $dapil_kecamatan)->count();
+        $jumlah_BB = $jumlah_BB->whereHas('pendukung_ref', function ($query) {
+            $query->whereBetween('usia', [59, 77]);
+        })->count();
+
+        $jumlah_X = $jumlah_X->whereHas('pendukung_ref', function ($query) {
+            $query->whereBetween('usia', [43, 58]);
+        })->count();
+
+        $jumlah_Y = $jumlah_Y->whereHas('pendukung_ref', function ($query) {
+            $query->whereBetween('usia', [27, 42]);
+        })->count();
+
+        $jumlah_Z = $jumlah_Z->whereHas('pendukung_ref', function ($query) {
+            $query->whereBetween('usia', [11, 26]);
+        })->count();
+
+        $jenis_kelamin['L'] = $jenis_kelamin['L']->whereHas('pendukung_ref', function ($query) use ($dapil_kecamatan) {
+            $query->where('kecamatan', $dapil_kecamatan)
+                ->where('jenis_kelamin', 'L');
+        })->count();
+
+        $jenis_kelamin['P'] = $jenis_kelamin['P']->whereHas('pendukung_ref', function ($query) use ($dapil_kecamatan) {
+            $query->where('kecamatan', $dapil_kecamatan)
+                ->where('jenis_kelamin', 'P');
+        })->count();
+
+
 
         return view('caleg.pendukung.dashboard', [
             'title' => "PENDUKUNG: $get_data->nama",
             'total_pemilih_turunan' => $pendukung->count(),
-            'jenis_kelamin' => $jenis_kelamin,
+            'jenis_kelamin' => $jenis_kelamin ?? null,
             'list_turunan' => $list_turunan ?? null,
-            'total_pemilih_PB' => $jumlah_PB->count(),
-            'total_pemilih_BB' => $jumlah_BB->count(),
-            'total_pemilih_X' => $jumlah_X->count(),
-            'total_pemilih_Y' => $jumlah_Y->count(),
-            'total_pemilih_Z' => $jumlah_Z->count(),
+            'total_pemilih_PB' => $jumlah_PB,
+            'total_pemilih_BB' => $jumlah_BB,
+            'total_pemilih_X' => $jumlah_X,
+            'total_pemilih_Y' => $jumlah_Y,
+            'total_pemilih_Z' => $jumlah_Z,
             'kabkota_list' => $kabkota_list,
             'select_kabkota' => null,
             'select_kecamatan' => null,
@@ -282,13 +409,13 @@ class PendukungCalegController extends Controller
         }
 
         if ($level_caleg == 1) {
-            $pendukung = CalegPendukungRi::with('kabkota_ref', 'kecamatan_ref', 'kelurahandesa_ref')
+            $pendukung = CalegPendukungRi::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 ->orderBy("nama", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
         }
 
         if ($level_caleg == 2) {
-            $pendukung = CalegPendukungProv::with('kabkota_ref', 'kecamatan_ref', 'kelurahandesa_ref')
+            $pendukung = CalegPendukungProv::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 ->orderBy("nama", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
         }
@@ -445,7 +572,12 @@ class PendukungCalegController extends Controller
         // dd($pendukung_caleg);
         if ($level_caleg == 1) {
             // $pendukung['dapil_ri'] = $dapil_id;
-            CalegPendukungRi::create($pendukung_caleg);
+            $cek_sudah_input = CalegPendukungRi::where('dpt', $request->dpt_id)->where('celeg_id', $caleg_id)->first();
+            if ($cek_sudah_input) {
+                CalegPendukungRi::where('id', $cek_sudah_input->id)->update($pendukung_caleg);
+            } else {
+                CalegPendukungRi::create($pendukung_caleg);
+            }
 
             // if ($request->caleg_prov != 'TIDAK MEMILIH CALEG DPR PROVINSI') {
             //     $data['caleg_prov'] = $request->caleg_prov;
@@ -470,7 +602,12 @@ class PendukungCalegController extends Controller
         } elseif ($level_caleg == 2) {
 
             // $pendukung['dapil_prov'] = $dapil_id;
-            CalegPendukungProv::create($pendukung_caleg);
+            $cek_sudah_input = CalegPendukungProv::where('dpt', $request->dpt_id)->where('celeg_id', $caleg_id)->first();
+            if ($cek_sudah_input) {
+                CalegPendukungProv::where('id', $cek_sudah_input->id)->update($pendukung_caleg);
+            } else {
+                CalegPendukungProv::create($pendukung_caleg);
+            }
 
             // if ($request->caleg_ri != 'TIDAK MEMILIH CALEG DPR RI') {
             //     $data['caleg_ri'] = $request->caleg_prov;

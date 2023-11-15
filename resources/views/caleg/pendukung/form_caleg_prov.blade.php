@@ -1,4 +1,4 @@
-@extends('dpw.template.main')
+@extends('template.main')
 
 @section('header')
     <!-- Material color picker -->
@@ -48,7 +48,7 @@
                                         if ($status == 1) {
                                             $id_dpt_ambil = $dpt->dpt;
                                         }
-                                        
+
                                         if ($status == 2) {
                                             $id_dpt_ambil = $dpt->id;
                                         }
@@ -72,34 +72,35 @@
                                         } else {
                                             $pendukung_ada = false;
                                         }
-                                        
-                                        $user_update_kabkota = $ambil_pendukung->user_update_kabkota ?? '';
+
+                                        $user_update_prov = $ambil_pendukung->user_update_prov ?? '';
                                         $user_update_ri = $ambil_pendukung->user_update_ri ?? '';
-                                        
+
                                     @endphp
 
                                     <div id="smartwizard" class="form-wizard order-create">
                                         <ul class="nav nav-wizard">
                                             <li><a class="nav-link" href="#form">
-                                                    <span>DATA</span>
+                                                    {{-- <span>DATA</span> --}}
                                                 </a></li>
-                                            @php
+                                            {{-- @php
+
                                                 // }
-                                                if ($user_update_kabkota == null or $id_user == $user_update_kabkota) {
+                                                if ($user_update_prov == null or $id_user == $user_update_prov) {
                                                     echo ' <li><a class="nav-link" href="#form_a">
-                                                    <span>KAB</span>
+                                                    <span>PROV</span>
                                                 </a></li>';
                                                 }
-                                                
+
                                             @endphp
                                             @php
+
                                                 if ($user_update_ri == null or $id_user == $user_update_ri) {
                                                     echo '  <li><a class="nav-link" href="#form_b">
                                                     <span>RI</span>
                                                 </a></li>';
                                                 }
-                                            @endphp
-
+                                            @endphp --}}
                                         </ul>
 
 
@@ -135,11 +136,12 @@
                                                         <span class="input-group-text"> <i
                                                                 class="bi bi-credit-card-fill"></i>
                                                         </span>
-                                                        <input name="ktp" value="{{ old('ktp', $dpt->ktp) }}"
+                                                        <input name="ktp"
+                                                            value="{{ old('ktp', $dpt->pendukung_caleg_prov->ktp ?? null) }}"
                                                             type="text"
                                                             class="form-control  @error('ktp') is-invalid @enderror"
-                                                            id="validationCustomUsername"
-                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)">
+                                                            id=""
+                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)" />
                                                         @error('ktp')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
@@ -160,7 +162,7 @@
                                                                     class="bi bi-house-door-fill"></i>
                                                             </span>
                                                             <input name="tempat_lahir"
-                                                                value="{{ old('tempat_lahir', $dpt->tempat_lahir) }}"
+                                                                value="{{ old('tempat_lahir', $dpt->pendukung_caleg_prov->tempat_lahir ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('tempat_lahir') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -181,7 +183,7 @@
                                                                     class="bi bi-calendar4-event"></i>
                                                             </span>
                                                             <input name="tanggal_lahir"
-                                                                value="{{ old('tanggal_lahir', $dpt->tanggal_lahir) }}"
+                                                                value="{{ old('tanggal_lahir', $dpt->pendukung_caleg_prov->tanggal_lahir ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('tanggal_lahir') is-invalid @enderror"
                                                                 placeholder="Masukan tanggal lahir" id="mdate">
@@ -201,7 +203,8 @@
                                                             Kelamin</label>
                                                         <div class="input-group">
                                                             <select name="jenis_kelamin"
-                                                                class="default-select form-control wide mb-3 @error('jenis_kelamin') is-invalid @enderror">
+                                                                class="default-select form-control wide mb-3 @error('jenis_kelamin') is-invalid @enderror"
+                                                                disabled>
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($jenis_kelamin as $item)
                                                                     @if (old('jenis_kelamin', $dpt->jenis_kelamin) == $item)
@@ -231,7 +234,7 @@
                                                                 class="default-select form-control wide mb-3 @error('status_perkawinan') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($status_perkawinan as $item)
-                                                                    @if (old('status_perkawinan', $dpt->status_perkawinan) == $item)
+                                                                    @if (old('status_perkawinan', $dpt->pendukung_caleg_prov->status_perkawinan ?? null) == $item)
                                                                         <option value="{{ $item }}" selected>
                                                                             {{ $item }}
                                                                         </option>
@@ -262,7 +265,7 @@
                                                                 class="default-select form-control wide mb-3 @error('agama') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($agama as $item)
-                                                                    @if (old('agama', $dpt->agama) == $item->id)
+                                                                    @if (old('agama', $dpt->pendukung_caleg_prov->agama ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -283,11 +286,11 @@
                                                         <label class="text-label form-label"
                                                             for="validationCustomUsername">Pekerjaan</label>
                                                         <div class="basic-form">
-                                                            <select name="pekerjaan" id="single-select"
+                                                            <select name="pekerjaan" id="single-select2"
                                                                 class="single-select-placeholder js-states @error('pekerjaan') is-invalid @enderror">
                                                                 <option value="">Pilih</option>
                                                                 @foreach ($pekerjaan as $item)
-                                                                    @if (old('pekerjaan', $dpt->pekerjaan) == $item->id)
+                                                                    @if (old('pekerjaan', $dpt->pendukung_caleg_prov->pekerjaan ?? null) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
                                                                             {{ $item->nama }}</option>
                                                                     @else
@@ -309,6 +312,89 @@
 
                                                 <hr>
 
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Klasifikasi Pemilih</h4>
+                                                </div>
+
+                                                <div class="row ">
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Referensi</label>
+                                                        <div class="basic-form">
+                                                            <select name="referensi_id" id="single-selecteff"
+                                                                class="single-select-placeholder js-states @error('referensi_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($referensi as $item)
+                                                                    @if (old('referensi_id', $dpt->pendukung_caleg_prov->referensi_id ?? null) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('referensi_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Klasifikasi Pendukung</label>
+                                                        <div class="basic-form">
+                                                            <select name="klasifikasi_id" id="single-selecte"
+                                                                class="single-select-placeholder js-states @error('klasifikasi_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($klasifikasi as $item)
+                                                                    @if (old('klasifikasi_id', $dpt->pendukung_caleg_prov->klasifikasi_id ?? null) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('klasifikasi_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Bantuan</label>
+                                                        <div class="basic-form">
+                                                            <select name="klasifikasi_bantuan_id" id="single-select"
+                                                                class="single-select-placeholder js-states @error('klasifikasi_bantuan_id') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($bantuan as $item)
+                                                                    @if (old('klasifikasi_bantuan_id', $dpt->pendukung_caleg_prov->klasifikasi_bantuan_id ?? null) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            {{ $item->nama }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('klasifikasi_bantuan_id')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
 
                                                 <div class="card-header">
                                                     <h4 class="card-title">Kontak Pendukung</h4>
@@ -321,7 +407,8 @@
                                                         <div class="input-group">
                                                             <span class="input-group-text"> <i class="bi bi-envelope"></i>
                                                             </span>
-                                                            <input name="no_wa" value="{{ old('no_wa', $dpt->no_wa) }}"
+                                                            <input name="no_wa"
+                                                                value="{{ old('no_wa', $dpt->pendukung_caleg_prov->no_wa ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('no_wa') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -340,7 +427,8 @@
                                                             <span class="input-group-text">
                                                                 <i class="bi bi-telephone-fill"></i>
                                                             </span>
-                                                            <input name="no_hp" value="{{ old('no_hp', $dpt->no_hp) }}"
+                                                            <input name="no_hp"
+                                                                value="{{ old('no_hp', $dpt->pendukung_caleg_prov->no_hp ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('no_hp') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -365,8 +453,8 @@
                                                             <br>
                                                             <span class="input-group-text"> <i class="bi bi-house"></i>
                                                             </span>
-                                                            <input name="nama"
-                                                                value="{{ old('alamat_detail', $dpt->detail) }}"
+                                                            <input name="alamat_detail"
+                                                                value="{{ old('alamat_detail', $dpt->pendukung_caleg_prov->alamat_detail ?? null) }}"
                                                                 type="text"
                                                                 class="form-control @error('alamat_detail') is-invalid @enderror"
                                                                 id="validationCustomUsername"
@@ -383,36 +471,21 @@
 
 
 
+
+
                                             </div>
 
 
                                             {{-- caleg a --}}
-                                            <div id="form_a" class="tab-pane" role="tabpanel">
+                                            {{-- <div id="form_a" class="tab-pane" role="tabpanel">
 
                                                 @php
                                                     $dapil_id_user = session()->get('dapil_id');
-                                                    
-                                                    $kabkota = App\Models\DapilProvWilayah::select('kabkota')
-                                                        ->where('dapil_prov_id', $dapil_id_user)
+                                                    $kabkota = App\Models\DapilKabkotaWilayah::where('dapil_kabkota_id', $dapil_id_user)->first()->kabkota;
+                                                    $dapil_prov_id = App\Models\DapilProvWilayah::where('kabkota', $kabkota)->first()->dapil_prov_id;
+                                                    $caleg_prov = App\Models\CalegProv::orderBy('no_urut', 'asc')
+                                                        ->where('dapil_prov', $dapil_prov_id)
                                                         ->get();
-                                                    
-                                                    $kabkota_list = [];
-                                                    foreach ($kabkota as $item_kabkota) {
-                                                        array_push($kabkota_list, $item_kabkota->kabkota);
-                                                    }
-                                                    
-                                                    $dapil_kabkota = App\Models\DapilKabkotaWilayah::select('dapil_kabkota_id')
-                                                        ->whereIn('kabkota', $kabkota_list)
-                                                        ->distinct()
-                                                        ->get();
-                                                    
-                                                    $kabkota_list_array = [];
-                                                    foreach ($dapil_kabkota as $item_kabkota_array) {
-                                                        array_push($kabkota_list_array, $item_kabkota_array->dapil_kabkota_id);
-                                                    }
-                                                    
-                                                    // dd($kabkota_list_array);
-                                                    
                                                 @endphp
 
                                                 <div class="col-xl-12">
@@ -420,43 +493,27 @@
                                                         <div class="card-body">
                                                             <div class="mb-12">
                                                                 <h4 class="card-title">Apakah pendukung ini akan mendukung
-                                                                    calon DPRD Kabupaten/Kota dari Partai Nasdem ?</h4>
-                                                                <p>Jika Iya Silakan Pilih Calon DPRD Kabupaten Kota Nasdem
-                                                                </p>
+                                                                    calon DPRD Provinsi dari Partai Nasdem ?</h4>
+                                                                <p>Jika Iya Silakan Pilih Calon DPRD Provinsi Nasdem</p>
                                                             </div>
-
-                                                            <select name="caleg_kabkota" class="dropdown-groups">
+                                                            <select name="caleg_prov" id="single-select3"
+                                                                class="single-select-placeholder js-states">
                                                                 <option
-                                                                    value="TIDAK MEMILIH CALEG DPR KABUPATEN KOTA DARI NASDEM">
+                                                                    value="TIDAK MEMILIH CALEG DPR PROVINSI DARI NASDEM">
                                                                     TIDAK MEMILIH CALEG PROVINSI SULUT</option>
-                                                                @php
-                                                                    $dapil_kabkota_list = App\Models\DapilKabkota::whereIn('id', $kabkota_list_array)->get();
-                                                                @endphp
-                                                                @foreach ($dapil_kabkota_list as $item_dapil)
-                                                                    <optgroup label="{{ $item_dapil->nama }}">
-                                                                        @php
-                                                                            $caleg_kabkota = App\Models\CalegKabkota::where('dapil_kabkota', $item_dapil->id)->get();
-                                                                            // dd($caleg_kabkota);
-                                                                        @endphp
-
-                                                                        @foreach ($caleg_kabkota as $item)
-                                                                            @if (old('caleg_kabkota', $dpt->caleg_kabkota) == $item->id)
-                                                                                <option value="{{ $item->id }}"
-                                                                                    selected>
-                                                                                    No.Urut {{ $item->no_urut }} |
-                                                                                    {{ $item->nama }}
-                                                                                </option>
-                                                                            @else
-                                                                                <option value="{{ $item->id }}">
-                                                                                    No.Urut {{ $item->no_urut }} |
-                                                                                    {{ $item->nama }}
-                                                                                </option>
-                                                                            @endif
-                                                                        @endforeach
-
-                                                                    </optgroup>
+                                                                @foreach ($caleg_prov as $item)
+                                                                    @if (old('caleg_prov', $dpt->caleg_prov) == $item->id)
+                                                                        <option value="{{ $item->id }}" selected>
+                                                                            No.Urut {{ $item->no_urut }} |
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @else
+                                                                        <option value="{{ $item->id }}">
+                                                                            No.Urut {{ $item->no_urut }} |
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endif
                                                                 @endforeach
-
                                                             </select>
                                                             <br> <br> <br> <br> <br> <br>
                                                         </div>
@@ -464,11 +521,11 @@
                                                 </div>
 
 
-                                            </div>
+                                            </div> --}}
 
 
                                             {{-- caleg a --}}
-                                            <div id="form_b" class="tab-pane" role="tabpanel">
+                                            {{-- <div id="form_b" class="tab-pane" role="tabpanel">
 
                                                 <div class="col-xl-12">
                                                     <div class="card">
@@ -486,10 +543,9 @@
 
                                                             <select name="caleg_ri" id="single-select2"
                                                                 class="single-select-placeholder js-states">
-                                                                <option
-                                                                    value="TIDAK MEMILIH CALEG DPR RI
-                                                                    DARINASDEM">
-                                                                    TIDAK MEMILIH CALEG DPR RI DARI NASDEM</option>
+                                                                <option value="TIDAK MEMILIH CALEG DPR RI DARI NASDEM">
+                                                                    TIDAK MEMILIH CALEG DPR RI
+                                                                    DARI NASDEM</option>
                                                                 @foreach ($caleg_ri as $item)
                                                                     @if (old('caleg_ri', $dpt->caleg_ri) == $item->id)
                                                                         <option value="{{ $item->id }}" selected>
@@ -507,24 +563,46 @@
                                                             <br> <br> <br> <br> <br> <br>
                                                         </div>
                                                     </div>
-
                                                 </div>
+                                            </div> --}}
 
+                                        </div>
 
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="invalidCheck2" required>
-                                                    <label class="form-check-label" for="invalidCheck2">
-                                                        Anda yakin akan menambahkan sebagai pendukung ?
-                                                    </label>
+                                        <div class="mb-12 col-md-12">
+                                            <label class="text-label form-label" for="validationCustomUsername">Foto
+                                                (ktp/dll)
+                                            </label>
+                                            <div class="input-group">
+                                                <div class="form-file">
+                                                    <input name="foto" type="file"
+                                                        class="form-file-input form-control @error('foto') is-invalid @enderror"
+                                                        id="image1" onchange="priviewImage1()">
                                                 </div>
-                                                <button type="submit" class="btn me-2 btn-primary">Simpan Data</button>
-                                                <a href="{{ $url_direct }}" class="btn btn-light">Batal</a>
+                                                <span class="input-group-text">Upload</span>
+                                                @error('foto')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                                <div>
+                                                    <img src="{{ $dpt->pendukung_caleg_prov->alamat_detail ?? null }}"
+                                                        class="img-preview1 img-fluid">
+                                                </div>
                                             </div>
                                         </div>
 
+                                        <div class="mb-3 col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="invalidCheck2" required>
+                                                <label class="form-check-label" for="invalidCheck2">
+                                                    Anda yakin akan menambahkan sebagai pendukung ?
+                                                </label>
+                                            </div>
+                                            <hr>
+                                            <button type="submit" class="btn me-2 btn-primary">Simpan Data</button>
+                                            <a href="{{ $url_direct }}" class="btn btn-light">Batal</a>
+                                        </div>
                                 </form>
 
                             </div>
@@ -571,6 +649,21 @@
         <!-- Form Steps -->
         <script src="{{ asset('') }}assets/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
 
+        <script>
+            function priviewImage1() {
+                const image = document.querySelector('#image1');
+                const view = document.querySelector('.img-preview1');
+
+                view.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent) {
+                    view.src = oFREvent.target.result;
+                }
+            }
+        </script>
 
         <script>
             $(document).ready(function() {

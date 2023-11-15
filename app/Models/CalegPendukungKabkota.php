@@ -29,16 +29,16 @@ class CalegPendukungKabkota extends Model
         $query->when(
             $kabkota,
             fn ($query, $kabkota) =>
-            $query->where('kabkota', $kabkota)
+            $query->whereHas('pendukung_ref', fn ($query) =>
+            $query->where('kabkota', $kabkota))
         );
 
         $kecamatan = $filters['kecamatan'] ?? false;
         $query->when(
             $kecamatan,
-            fn ($query) =>
-            $query->whereHas('pendukung_ref', function ($q, $kecamatan) {
-                $q->where('kecamatan', $kecamatan);
-            })
+            fn ($query, $kecamatan) =>
+            $query->whereHas('pendukung_ref', fn ($query) =>
+            $query->where('kecamatan', $kecamatan))
             // $query->where('kecamatan', $kecamatan)
         );
 
@@ -47,7 +47,8 @@ class CalegPendukungKabkota extends Model
         $query->when(
             $kelurahandesa,
             fn ($query, $kelurahandesa) =>
-            $query->where('kelurahan_desa', $kelurahandesa)
+            $query->whereHas('pendukung_ref', fn ($query) =>
+            $query->where('kelurahan_desa', $kelurahandesa))
         );
 
         $tps = $filters['tps'] ?? false;
@@ -60,14 +61,19 @@ class CalegPendukungKabkota extends Model
         $query->when(
             $tps_string,
             fn ($query, $tps_string) =>
-            $query->where('tps', $tps_string)
+            $query->whereHas('pendukung_ref', fn ($query) =>
+            $query->where('tps', $tps_string))
         );
 
         $nama = $filters['cari_nama'] ?? false;
         $query->when(
             $nama,
             fn ($query, $nama) =>
-            $query->where('nama', 'like', "%$nama%")
+            $query->whereHas(
+                'pendukung_ref',
+                fn ($query) =>
+                $query->where('nama', 'like', "%$nama%")
+            )
         );
     }
 
