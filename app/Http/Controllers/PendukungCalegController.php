@@ -247,8 +247,8 @@ class PendukungCalegController extends Controller
                 $jumlah_Y = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
                 $jumlah_Z = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
 
-                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
-                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['L'] = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungRi::cari([''])->with(['pendukung_ref']);
             } elseif ($level_caleg == 2) {
 
                 $pendukung = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
@@ -258,8 +258,8 @@ class PendukungCalegController extends Controller
                 $jumlah_Y = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
                 $jumlah_Z = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
 
-                $jenis_kelamin['L'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
-                $jenis_kelamin['P'] = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['L'] = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
+                $jenis_kelamin['P'] = CalegPendukungProv::cari([''])->with(['pendukung_ref']);
             } elseif ($level_caleg == 3) {
 
                 $pendukung = CalegPendukungKabkota::cari([''])->with(['pendukung_ref']);
@@ -364,6 +364,7 @@ class PendukungCalegController extends Controller
     {
         //filter per dapil
         $level_caleg = $request->session()->get('level_caleg');
+        $user_id = $request->session()->get('user_id');
 
         if (request('kabkota') != '') {
             $get_kabkota = Kabkota::firstWhere('id', request('kabkota'));
@@ -395,6 +396,36 @@ class PendukungCalegController extends Controller
             $select_kelurahandesa = NULL;
         }
 
+        if (request('bantuan') != '') {
+            $get_bantuan = KlasifikasiBantuan::firstWhere('id', request('bantuan'));
+            $select_bantuan = [
+                'id' => $get_bantuan->id,
+                'nama' => $get_bantuan->nama,
+            ];
+        } else {
+            $select_bantuan = NULL;
+        }
+
+        if (request('referensi') != '') {
+            $get_referensi = TimReferensi::firstWhere('id', request('referensi'));
+            $select_referensi = [
+                'id' => $get_referensi->id,
+                'nama' => $get_referensi->nama,
+            ];
+        } else {
+            $select_referensi = NULL;
+        }
+
+        if (request('klasifikasi') != '') {
+            $get_klasifikasi = KlasifikasiPendukung::firstWhere('id', request('klasifikasi'));
+            $select_klasifikasi = [
+                'id' => $get_klasifikasi->id,
+                'nama' => $get_klasifikasi->nama,
+            ];
+        } else {
+            $select_klasifikasi = NULL;
+        }
+
         if (request('tps') != '') {
             $string_tps = sprintf('%03d', request('tps'));
             $select_tps = $string_tps;
@@ -411,19 +442,19 @@ class PendukungCalegController extends Controller
         if ($level_caleg == 1) {
             $pendukung = CalegPendukungRi::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 ->orderBy("nama", "asc")
-                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
         if ($level_caleg == 2) {
             $pendukung = CalegPendukungProv::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 ->orderBy("nama", "asc")
-                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
         if ($level_caleg == 3) {
             $pendukung = CalegPendukungKabkota::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 // ->orderBy("pendukung_ref.nama", "asc")
-                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'cari_nama']));
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
         if ($level_caleg > 1) {
@@ -433,16 +464,26 @@ class PendukungCalegController extends Controller
             $kabkota_list = Kabkota::get();
         }
 
-        // dd($pendukung->get());
+        $referensi_list = TimReferensi::where('user_id_caleg', $user_id)->get();
+        $bantuan_list = KlasifikasiBantuan::where('user_id', $user_id)->get();
+        $klasifikasi_list = KlasifikasiPendukung::where('user_id', $user_id)->get();
+
+        // dd($referensi_list);
 
         return view('caleg.pendukung.index', [
             'title' => 'Data Pendukung',
             'pendukung' => $pendukung->cursorPaginate(300)->withQueryString(),
             'total_get' => $pendukung->count(),
             'kabkota_list' => $kabkota_list,
+            'referensi_list' => $referensi_list,
+            'klasifikasi_list' => $klasifikasi_list,
+            'bantuan_list' => $bantuan_list,
             'select_kabkota' => $select_kabkota,
             'select_kecamatan' => $select_kecamatan,
             'select_kelurahandesa' => $select_kelurahandesa,
+            'select_bantuan' => $select_bantuan,
+            'select_referensi' => $select_referensi,
+            'select_klasifikasi' => $select_klasifikasi,
             'select_tps' => $select_tps,
             'cari_nama' => $cari_nama,
         ]);

@@ -75,6 +75,27 @@ class CalegPendukungKabkota extends Model
                 $query->where('nama', 'like', "%$nama%")
             )
         );
+
+        $referensi = $filters['referensi'] ?? false;
+        $query->when(
+            $referensi,
+            fn ($query, $referensi) =>
+            $query->where('referensi_id', $referensi)
+        );
+
+        $klasifikasi = $filters['klasifikasi'] ?? false;
+        $query->when(
+            $klasifikasi,
+            fn ($query, $klasifikasi) =>
+            $query->where('klasifikasi_id', $klasifikasi)
+        );
+
+        $klasifikasi_bantuan = $filters['klasifikasi_bantuan'] ?? false;
+        $query->when(
+            $klasifikasi_bantuan,
+            fn ($query, $klasifikasi_bantuan) =>
+            $query->where('klasifikasi_bantuan_id', $klasifikasi_bantuan)
+        );
     }
 
     public function pendukung_ref(): HasOne

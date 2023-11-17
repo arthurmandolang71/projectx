@@ -89,14 +89,68 @@
                                             </select>
                                             <hr>
                                         </div>
+                                        <hr>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="multicol-country">Referensi</label>
+                                            <select id="referensi" name="referensi" class="select2 form-select"
+                                                data-allow-clear="true">
+                                                @if ($select_referensi)
+                                                    <option value="{{ $select_referensi['id'] }}"> Pencarian
+                                                        {{ $select_referensi['nama'] }}</option>
+                                                @else
+                                                    <option value="" selected>Pilih referensi</option>
+                                                @endif
+
+                                                @foreach ($referensi_list as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="multicol-country">Progam/bantuan</label>
+                                            <select id="bantuan" name="bantuan" class="select2 form-select"
+                                                data-allow-clear="true">
+                                                @if ($select_bantuan)
+                                                    <option value="{{ $select_bantuan['id'] }}"> Pencarian
+                                                        {{ $select_bantuan['nama'] }}</option>
+                                                @else
+                                                    <option value="" selected>Pilih bantuan</option>
+                                                @endif
+
+                                                @foreach ($bantuan_list as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="multicol-country">Klasifikasi</label>
+                                            <select id="klasifikasi" name="klasifikasi" class="select2 form-select"
+                                                data-allow-clear="true">
+                                                @if ($select_klasifikasi)
+                                                    <option value="{{ $select_klasifikasi['id'] }}"> Pencarian
+                                                        {{ $select_klasifikasi['nama'] }}</option>
+                                                @else
+                                                    <option value="" selected>Pilih klasifikasi</option>
+                                                @endif
+
+                                                @foreach ($klasifikasi_list as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            <hr>
+                                        </div>
+
                                         <div class="col-md-8">
                                             {{-- <label class="form-label" for="multicol-country">Nama</label> --}}
                                             @if ($cari_nama)
                                                 <input type="text" name="cari_nama" id="nama" class="form-control"
                                                     placeholder="John" value="{{ $cari_nama }}" />
                                             @else
-                                                <input type="text" name="cari_nama" id="nama" class="form-control"
-                                                    placeholder="Masukan pencarian nama/marga" value="" />
+                                                <input type="text" name="cari_nama" id="nama"
+                                                    class="form-control" placeholder="Masukan pencarian nama/marga"
+                                                    value="" />
                                             @endif
                                             <hr>
                                         </div>
