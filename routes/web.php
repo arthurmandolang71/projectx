@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RelawanController;
 use App\Http\Controllers\DptCalegController;
 use App\Http\Controllers\CalegPaketController;
+use App\Http\Controllers\DashboardCaleg;
 use App\Http\Controllers\TargetCalegController;
 use App\Http\Controllers\PendukungCalegController;
 use App\Http\Controllers\KlasifikasiBantuanController;
@@ -88,6 +89,10 @@ Route::resource('/relawan', RelawanController::class)->middleware('isCaleg')->ex
 Route::controller(TargetCalegController::class)->middleware('isCaleg')->group(function () {
     Route::get('/target/edit', 'edit');
     Route::put('/target', 'update');
+});
+
+Route::controller(DashboardCaleg::class)->middleware('isCaleg')->group(function () {
+    Route::get('/calegdash', 'index');
 });
 
 // selesai admin caleg

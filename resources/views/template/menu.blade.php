@@ -68,6 +68,11 @@
 
             @can('isCaleg')
                 <li>
+                    <a class="bi bi-bar-chart" href="/calegdash">
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
                     <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="bi bi-people-fill"></i>
                         <span class="nav-text">Penjaringan</span>
