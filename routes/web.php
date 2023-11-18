@@ -1,15 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardTim;
 use App\Http\Controllers\TimController;
+use App\Http\Controllers\DashboardCaleg;
 use App\Http\Controllers\CalegController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DptTimController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RelawanController;
 use App\Http\Controllers\DptCalegController;
 use App\Http\Controllers\CalegPaketController;
-use App\Http\Controllers\DashboardCaleg;
 use App\Http\Controllers\TargetCalegController;
+use App\Http\Controllers\PendukungTimController;
 use App\Http\Controllers\PendukungCalegController;
 use App\Http\Controllers\KlasifikasiBantuanController;
 use App\Http\Controllers\KlasifikasiPendukungController;
@@ -96,3 +99,26 @@ Route::controller(DashboardCaleg::class)->middleware('isCaleg')->group(function 
 });
 
 // selesai admin caleg
+
+//tim caleg
+
+Route::controller(DashboardTim::class)->middleware('isTim')->group(function () {
+    Route::get('/timdash', 'index');
+});
+
+
+Route::controller(DptTimController::class)->middleware('isTim')->group(function () {
+    Route::get('/dpttim', 'index');
+
+    Route::get('/get_kecamatan/dpttim/{id}', 'getKecamatan');
+    Route::get('/get_kelurahandesa/dpttim/{id}', 'getKelurahanDesa');
+    Route::get('/get_tps/dpttim/{id}', 'getTps');
+});
+
+Route::controller(PendukungTimController::class)->middleware('isTim')->group(function () {
+    Route::get('/pendukungtim/dash', 'dashboard');
+    Route::get('/pendukungtim/index', 'index');
+
+    Route::get('/pendukungtim/create/{id_dpt}/{status}', 'create');
+    Route::post('/pendukungtim', 'store');
+});

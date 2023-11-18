@@ -3,7 +3,12 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="{{ auth()->user()->foto_profil }}" width="20" alt="" />
+                    @if (auth()->user()->foto_profil)
+                        <img src="{{ auth()->user()->foto_profil }}" width="20" alt="" />
+                    @else
+                        <img src="{{ asset('') }}assets/images/avatar/1.png" width="20">
+                    @endif
+
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi,<b>{{ auth()->user()->username }}</b></span>
                         <small class="text-end font-w400">{{ auth()->user()->name }}</small>
@@ -112,6 +117,24 @@
                         <li><a href="/klasifikasibantuan">Klasifkasi Bantuan</a></li>
                         <li><a href="/target/edit">Target Pendukung</a></li>
                     </ul>
+                </li>
+            @endcan
+
+            @can('isTim')
+                <li>
+                    <a class="bi bi-bar-chart" href="/timdash">
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="bi bi-people-fill" href="/dpttim">
+                        <span class="nav-text">Penjaringan</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="bi bi-flag-fill" href="/pendukungtim/index">
+                        <span class="nav-text">Penyaringan</span>
+                    </a>
                 </li>
             @endcan
         </ul>

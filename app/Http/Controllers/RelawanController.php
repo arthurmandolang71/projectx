@@ -76,6 +76,15 @@ class RelawanController extends Controller
 
         $validateData = $request->validate($validasi);
 
+        $level_caleg = session()->get('level_caleg');
+        if ($level_caleg == 1) {
+            $input_user['caleg_level'] = 1;
+        } elseif ($level_caleg == 2) {
+            $input_user['caleg_level'] = 2;
+        } elseif ($level_caleg == 3) {
+            $input_user['caleg_level'] = 3;
+        }
+
         if ($request->file('foto_relawan')) {
             $file = $request->file('foto_relawan');
             $path = Storage::put('foto_relawan', $file);
