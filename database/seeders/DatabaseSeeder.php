@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         //user login utama
         User::create([
             'name' => 'unknow',
@@ -666,8 +666,8 @@ class DatabaseSeeder extends Seeder
             'kabkota' => 7173,
         ]);
 
-           // dapil_kabkota
-           DB::statement(
+        // dapil_kabkota
+        DB::statement(
             "INSERT INTO `dapil_kabkota` (`id`, `nama`, `keterangan`, `created_at`, `updated_at`) VALUES
 (11, 'BOLAANG MONGONDOW 1', 'SANG TOMBOLANG - LOLAK', NULL, NULL),
 (12, 'BOLAANG MONGONDOW 2', 'BOLAANG - POIGAR - BOLAANG TIMUR', NULL, NULL),
@@ -732,9 +732,9 @@ class DatabaseSeeder extends Seeder
                     "
         );
 
- // dapil_kabkota_wilayah
- DB::statement(
-    "INSERT INTO `dapil_kabkota_wilayah` (`id`, `dapil_kabkota_id`, `prov`, `kabkota`, `kecamatan`, `created_at`, `updated_at`) VALUES
+        // dapil_kabkota_wilayah
+        DB::statement(
+            "INSERT INTO `dapil_kabkota_wilayah` (`id`, `dapil_kabkota_id`, `prov`, `kabkota`, `kecamatan`, `created_at`, `updated_at`) VALUES
     (1, '711', '71', '7171', '717104', NULL, NULL),
     (2, '711', '71', '7171', '717107', NULL, NULL),
     (3, '712', '71', '7171', '717106', NULL, NULL),
@@ -907,7 +907,7 @@ class DatabaseSeeder extends Seeder
     (170, '733', '71', '7173', '717304', NULL, NULL),
     (171, '734', '71', '7173', '717303', NULL, NULL);
             "
-);
+        );
 
         // wilayah
         DB::statement(

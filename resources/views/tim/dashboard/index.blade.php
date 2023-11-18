@@ -52,7 +52,11 @@
                                 <div class="progress mb-2">
                                     @php
                                         // dd($target_pengurus);
-                                        $persen = ($total_pendukung / $relawan->target_pendukung) * 100;
+                                        if ($total_pendukung > 0 and $relawan->target_pendukung > 0) {
+                                            $persen = ($total_pendukung / $relawan->target_pendukung) * 100;
+                                        } else {
+                                            $persen = 0;
+                                        }
                                     @endphp
                                     <div class="progress-bar progress-animated bg-primary"
                                         style="width: {{ $persen }}%"></div>
