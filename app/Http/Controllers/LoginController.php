@@ -39,9 +39,18 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             // Caleg
+
+
             if (auth()->user()->level == 1) {
                 $request->session()->put('color', 'color_11');
+                $request->session()->put('logo', 'logosementara.png');
+                $request->session()->put('logo_text', 'logotextsementara.png');
             }
+
+
+
+
+
 
             if (auth()->user()->level == 2) {
                 $level_caleg = auth()->user()->caleg_level;
@@ -85,6 +94,7 @@ class LoginController extends Controller
                 }
 
                 $partai = Partai::where('id', $caleg->partai_id)->first();
+                dd($partai);
 
                 $request->session()->put('logo', $partai->logo);
                 $request->session()->put('logo_text', $partai->logo_text);
@@ -92,11 +102,10 @@ class LoginController extends Controller
 
                 $request->session()->put('level_caleg', $level_caleg);
                 $request->session()->put('caleg_id', $caleg->id);
-            } else {
-                $request->session()->put('logo', 'logosementara.png');
-                $request->session()->put('logo_text', 'logotextsementara.png');
-                $request->session()->put('color', 11);
             }
+
+
+
 
             if (auth()->user()->level == 3) {
                 $level_caleg = auth()->user()->caleg_level;
@@ -154,10 +163,6 @@ class LoginController extends Controller
 
                 $request->session()->put('level_caleg', $level_caleg);
                 $request->session()->put('caleg_id', $caleg->id);
-            } else {
-                $request->session()->put('logo', 'logosementara.png');
-                $request->session()->put('logo_text', 'logotextsementara.png');
-                $request->session()->put('color', 11);
             }
 
 
