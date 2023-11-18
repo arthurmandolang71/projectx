@@ -94,7 +94,7 @@ class LoginController extends Controller
                 }
 
                 $partai = Partai::where('id', $caleg->partai_id)->first();
-                dd($partai);
+                // dd($partai);
 
                 $request->session()->put('logo', $partai->logo);
                 $request->session()->put('logo_text', $partai->logo_text);
