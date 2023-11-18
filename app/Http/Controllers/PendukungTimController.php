@@ -152,7 +152,7 @@ class PendukungTimController extends Controller
         $pekerjaan = RefPekerjaan::all();
         $pendidikan = RefPendidikan::all();
 
-        $user_id = $request->session()->get('user_id');
+        $user_id = $request->session()->get('user_id_caleg');
         $bantuan = KlasifikasiBantuan::where('user_id', $user_id)->get();
         $klasifikasi = KlasifikasiPendukung::where('user_id', $user_id)->get();
 

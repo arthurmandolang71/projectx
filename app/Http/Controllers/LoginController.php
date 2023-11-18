@@ -134,6 +134,7 @@ class LoginController extends Controller
                         array_push($dapil_kecamatan, $item->kecamatan);
                     }
 
+                    $request->session()->put('user_id_caleg', $user_id_caleg);
                     $request->session()->put('dapil_id', $caleg->dapil_kabkota);
                     $request->session()->put('prov_dapil', 71);
                     $request->session()->put('kabkota_dapil', [$kabkota_dapil]);
@@ -144,6 +145,7 @@ class LoginController extends Controller
                 $partai = Partai::where('id', $caleg->partai_id)->first();
 
                 $relawan = TimReferensi::where('user_id', auth()->user()->id)->first();
+
 
                 $request->session()->put('relawan_id', $relawan->id);
                 $request->session()->put('logo', $partai->logo);

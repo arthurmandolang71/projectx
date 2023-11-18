@@ -145,7 +145,7 @@
                                                         @if ($item->pendukung->pendukung_caleg_ri)
                                                             <span>sudah di input</span>
                                                         @else
-                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                            <a href='/pendukungtim/create/{{ $item->id }}/{{ $status }}'
                                                                 type='button' class='btn btn-rounded btn-info'><span
                                                                     class='btn-icon-start text-info'><i
                                                                         class='fa fa-plus color-info'></i></span></a>
@@ -156,7 +156,7 @@
                                                         @if ($item->pendukung->pendukung_caleg_prov)
                                                             <span>sudah di input</span>
                                                         @else
-                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                            <a href='/pendukungtim/create/{{ $item->id }}/{{ $status }}'
                                                                 type='button' class='btn btn-rounded btn-info'><span
                                                                     class='btn-icon-start text-info'><i
                                                                         class='fa fa-plus color-info'></i></span></a>
@@ -167,7 +167,7 @@
                                                         @if ($item->pendukung->pendukung_caleg_kabkota ?? null)
                                                             <span>sudah di input</span>
                                                         @else
-                                                            <a href='/pendukungcaleg/create/{{ $item->id }}/{{ $status }}'
+                                                            <a href='/pendukungtim/create/{{ $item->id }}/{{ $status }}'
                                                                 type='button' class='btn btn-rounded btn-info'><span
                                                                     class='btn-icon-start text-info'><i
                                                                         class='fa fa-plus color-info'></i></span></a>
@@ -236,7 +236,7 @@
 
             // AJAX request 
             $.ajax({
-                url: '/get_kecamatan/dptcaleg/' + id,
+                url: '/get_kecamatan/dpttim/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -278,7 +278,7 @@
 
             // AJAX request 
             $.ajax({
-                url: '/get_kelurahandesa/dptcaleg/' + id,
+                url: '/get_kelurahandesa/dpttim/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {
@@ -323,7 +323,7 @@
 
             // AJAX request 
             $.ajax({
-                url: '/get_tps/dptcaleg/' + id,
+                url: '/get_tps/dpttim/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function(response) {

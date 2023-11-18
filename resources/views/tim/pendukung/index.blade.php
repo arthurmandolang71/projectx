@@ -176,7 +176,7 @@
                                                     @php
                                                         $status = 1;
                                                     @endphp
-                                                    <a href='/pendukungcaleg/create/{{ $item->dpt }}/{{ $status }}'
+                                                    <a href='/pendukungtim/create/{{ $item->dpt }}/{{ $status }}'
                                                         type='button' class='btn btn-rounded btn-info'><span
                                                             class='btn-icon-start text-info'><i
                                                                 class='fa fa-edit color-info'></i></span></a>

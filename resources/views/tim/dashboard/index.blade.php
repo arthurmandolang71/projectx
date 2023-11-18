@@ -47,17 +47,18 @@
                         <div class="card">
                             <div class="card-body ">
                                 <h4 class="card-title">Total Pendukung</h4>
+
                                 <h3>{{ $total_pendukung }}</h3>
                                 <div class="progress mb-2">
                                     @php
                                         // dd($target_pengurus);
-                                        $persen = ($total_pendukung / $caleg->target_pendukung) * 100;
+                                        $persen = ($total_pendukung / $relawan->target_pendukung) * 100;
                                     @endphp
                                     <div class="progress-bar progress-animated bg-primary"
                                         style="width: {{ $persen }}%"></div>
                                 </div>
                                 <h4>{{ number_format($persen, 2, '.', '') }}% dari target pendukung
-                                    {{ $caleg->target_pendukung }} </h4>
+                                    {{ $relawan->target_pendukung }} </h4>
 
                                 <hr>
 

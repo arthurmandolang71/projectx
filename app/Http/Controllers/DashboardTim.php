@@ -26,32 +26,37 @@ class DashboardTim extends Controller
         $level_caleg = $request->session()->get('level_caleg');
         $dapil_id = $request->session()->get('dapil_id');
         $user_id = $request->session()->get('user_id');
+        $user_id_caleg = $request->session()->get('user_id_caleg');
         $caleg_id = $request->session()->get('caleg_id');
         $relawan_id = $request->session()->get('relawan_id');
 
-        $bantuan = KlasifikasiBantuan::where('user_id', $user_id)->get();
-        $klasifikasi = KlasifikasiPendukung::where('user_id', $user_id)->get();
-        $relawan = TimReferensi::where('id', $relawan_id)->get();
+        // dd($user_id_caleg);
+
+        $bantuan = KlasifikasiBantuan::where('user_id', $user_id_caleg)->get();
+        $klasifikasi = KlasifikasiPendukung::where('user_id', $user_id_caleg)->get();
+        $relawan = TimReferensi::where('user_id', $user_id)->first();
+
+
 
         if ($level_caleg == 1) {
             $dapil = DapilRi::where('id', $dapil_id)->first();
-            $caleg = CalegRi::where('user_id', $user_id)->first();
+            $caleg = CalegRi::where('user_id', $user_id_caleg)->first();
         } elseif ($level_caleg == 2) {
             $dapil = DapilProv::where('id', $dapil_id)->first();
-            $caleg = CalegProv::where('user_id', $user_id)->first();
+            $caleg = CalegProv::where('user_id', $user_id_caleg)->first();
         } elseif ($level_caleg == 3) {
             $dapil = DapilKabkota::where('id', $dapil_id)->first();
-            $caleg = CalegKabkota::where('user_id', $user_id)->first();
+            $caleg = CalegKabkota::where('user_id', $user_id_caleg)->first();
         }
 
         // dd($caleg);
 
         if ($level_caleg == 1) {
-            $total_pendukung = CalegPendukungRi::where('referensi_id', $caleg_id)->count();
+            $total_pendukung = CalegPendukungRi::where('referensi_id', $relawan->id)->count();
         } elseif ($level_caleg == 2) {
-            $total_pendukung = CalegPendukungProv::where('referensi_id', $caleg_id)->count();
+            $total_pendukung = CalegPendukungProv::where('referensi_id', $relawan->id)->count();
         } elseif ($level_caleg == 3) {
-            $total_pendukung = CalegPendukungKabkota::where('referensi_id', $caleg_id)->count();
+            $total_pendukung = CalegPendukungKabkota::where('referensi_id', $relawan->id)->count();
         }
 
 
@@ -92,7 +97,7 @@ class DashboardTim extends Controller
             ]);
         }
 
-        // dd($list_klasifikasi);
+        // dd($relawan);
 
         return view('tim.dashboard.index', [
             'title' => 'Dashboard',
