@@ -57,8 +57,7 @@ class PendukungCalegController extends Controller
             request('prov') != ''
         ) {
             $get_data = Wilayah::where('id', request('kelurahandesa'))->first();
-            $get_data_turunan = Tps::where('wilayah_id', request('kelurahandesa'))->get();
-
+            $get_data_turunan = Tps::where('wilayah_id', request('kelurahandesa'))->orderBy('nama', 'asc')->get();
 
             if ($level_caleg == 1) {
                 $pendukung = CalegPendukungRi::cari(request(['kabkota', 'kecamatan', 'kelurahandesa']))->with(['pendukung_ref']);
@@ -293,7 +292,7 @@ class PendukungCalegController extends Controller
 
                 $itemnama = $item->nama;
                 $itemwilayahid = $item->wilayah_id;
-                $fresh_get = $pendukung_turunan->whereHas('pendukung_ref', function ($query) use ($itemnama, $itemwilayahid) {
+                $fresh_get = $pendukung_turunan->orderBy('nama', 'asc')->whereHas('pendukung_ref', function ($query) use ($itemnama, $itemwilayahid) {
                     $query->where('kelurahan_desa', $itemwilayahid)
                         ->where('tps', $itemnama);
                 })->count();
@@ -339,7 +338,6 @@ class PendukungCalegController extends Controller
             $query->where('kecamatan', $dapil_kecamatan)
                 ->where('jenis_kelamin', 'P');
         })->count();
-
 
 
         return view('caleg.pendukung.dashboard', [
@@ -543,6 +541,7 @@ class PendukungCalegController extends Controller
             'referensi' => $referensi,
             'jenis_kelamin' => ['L', 'P'],
             'status_perkawinan' => ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati'],
+            'status_keluarga' => ['SUAMI', 'ISTRI', 'ANAK/CUCU', 'SAUDARA/LAINYA'],
             'url_direct' => $url_direct
         ]);
     }
@@ -604,6 +603,8 @@ class PendukungCalegController extends Controller
         $pendukung_caleg['long'] = $request->long;
         $pendukung_caleg['lat'] = $request->lat;
         $pendukung_caleg['dpt'] = $pendukung['dpt'];
+        $pendukung_caleg['kk'] = $request->kk;
+        $pendukung_caleg['status_keluarga'] = $request->status_keluarga;
 
         $caleg_id = $request->session()->get('caleg_id');
         $pendukung_caleg['celeg_id'] = $caleg_id;

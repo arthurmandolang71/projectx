@@ -41,7 +41,7 @@
 
 
                             <div class="table-responsive">
-                                <table id="example2">
+                                <table id="example">
                                     <thead>
                                         <tr>
                                             <th>Nama Tim</th>

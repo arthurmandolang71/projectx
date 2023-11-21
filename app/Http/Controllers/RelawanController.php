@@ -18,7 +18,7 @@ class RelawanController extends Controller
     public function index(Request $request)
     {
         $user_id = $request->session()->get('user_id');
-        $relawan = TimReferensi::where('user_id_caleg', $user_id)->with(['tim_ref', 'user_ref'])->get();
+        $relawan = TimReferensi::where('user_id_caleg', $user_id)->with(['tim_ref', 'user_ref', 'pengikut_ref'])->get();
 
         // dd($relawan);
 

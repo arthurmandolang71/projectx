@@ -48,6 +48,7 @@
                                             <th>Nama</th>
                                             <th>No.Wa</th>
                                             <th>Keterangan</th>
+                                            <th>Pengikut</th>
                                             <th>status</th>
                                             <th>#</th>
                                         </tr>
@@ -60,6 +61,11 @@
                                                 </td>
                                                 <td>{{ $item->no_wa }}</td>
                                                 <td>{{ $item->keterangan }}</td>
+                                                <td><a href="pendukungcaleg/index?referensi={{ $item->id }}"
+                                                        target="_blank"><span
+                                                            class="badge badge-lg light badge-primary">{{ $item->pengikut_ref->count() }}
+                                                            Pengikut</span> </a>
+                                                </td>
                                                 <td>
                                                     @if ($item->is_active)
                                                         <span class="badge badge-lg light badge-primary">Aktif</span>

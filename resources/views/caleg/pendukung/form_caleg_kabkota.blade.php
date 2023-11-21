@@ -128,48 +128,82 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="mb-12 col-md-12">
-                                                    <label class="text-label form-label"
-                                                        for="validationCustomUsername">KK/KTP Kepala Keluarga</label>
-                                                    <div class="input-group">
-                                                        <br>
-                                                        <span class="input-group-text"> <i
-                                                                class="bi bi-person-bounding-box"></i>
-                                                        </span>
-                                                        <input name="nama" value="{{ old('nama', $dpt->nama) }}"
-                                                            type="text"
-                                                            class="form-control @error('nama') is-invalid @enderror"
-                                                            id="validationCustomUsername" placeholder="Nama Lengkap"
-                                                            disabled>
-                                                        @error('nama')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
+                                                <div class="row">
+
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Nomor Kartu
+                                                            Tanda Penduduk (KTP)</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"> <i
+                                                                    class="bi bi-credit-card-fill"></i>
+                                                            </span>
+                                                            <input name="ktp"
+                                                                value="{{ old('ktp', $dpt->pendukung_caleg_kabkota->ktp ?? null) }}"
+                                                                type="text"
+                                                                class="form-control  @error('ktp') is-invalid @enderror"
+                                                                id=""
+                                                                placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)" />
+                                                            @error('ktp')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
                                                     </div>
+
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">KK/KTP dari Kepala
+                                                            Keluarga</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text"> <i
+                                                                    class="bi bi-credit-card-fill"></i>
+                                                            </span>
+                                                            <input name="kk"
+                                                                value="{{ old('kk', $dpt->pendukung_caleg_kabkota->kk ?? null) }}"
+                                                                type="text"
+                                                                class="form-control  @error('kk') is-invalid @enderror"
+                                                                id=""
+                                                                placeholder="Masukan KK/KTP Kepala Keluaraga" />
+                                                            @error('kk')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-4 col-md-4">
+                                                        <label class="text-label form-label"
+                                                            for="validationCustomUsername">Status
+                                                            Keluarga</label>
+                                                        <div class="input-group">
+                                                            <select name="status_keluarga"
+                                                                class="default-select form-control wide mb-3 @error('status_keluarga') is-invalid @enderror">
+                                                                <option value="">Pilih</option>
+                                                                @foreach ($status_keluarga as $item)
+                                                                    @if (old('status_keluarga', $dpt->pendukung_caleg_kabkota->status_keluarga ?? null) == $item)
+                                                                        <option value="{{ $item }}" selected>
+                                                                            {{ $item }}
+                                                                        </option>
+                                                                    @else
+                                                                        <option value="{{ $item }}">
+                                                                            {{ $item }}
+                                                                        </option>
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('status_keluarga')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <label class="text-label form-label"
-                                                        for="validationCustomUsername">Nomor Kartu
-                                                        Tanda Penduduk (KTP)</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"> <i
-                                                                class="bi bi-credit-card-fill"></i>
-                                                        </span>
-                                                        <input name="ktp"
-                                                            value="{{ old('ktp', $dpt->pendukung_caleg_kabkota->ktp ?? null) }}"
-                                                            type="text"
-                                                            class="form-control  @error('ktp') is-invalid @enderror"
-                                                            id=""
-                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)" />
-                                                        @error('ktp')
-                                                            <div class="invalid-feedback">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
 
                                                 <hr>
 

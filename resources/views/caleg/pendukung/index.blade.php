@@ -169,8 +169,8 @@
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
+                                            <th>KK/KTP Kep. Keluaga</th>
                                             <th>Umur</th>
-                                            <th>Kabkota</th>
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Klasifikasi</th>
@@ -184,8 +184,11 @@
                                         @foreach ($pendukung as $item)
                                             <tr>
                                                 <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
+                                                <td>{{ $item->kk }} <br>
+                                                    <span>{{ $item->status_keluarga }}</span>
+                                                </td>
                                                 <td>{{ $item->pendukung_ref->usia }}</td>
-                                                <td>{{ $item->pendukung_ref->kabkota_ref->nama }}</td>
+                                                {{-- <td>{{ $item->pendukung_ref->kabkota_ref->nama }}</td> --}}
                                                 <td>{{ $item->pendukung_ref->kecamatan_ref->nama }}</td>
                                                 <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
                                                 <td>{{ $item->klasifikasi_ref->nama ?? null }}</td>
@@ -208,8 +211,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>Nama</th>
+                                            <th>KK/KTP Kep. Keluaga</th>
                                             <th>Umur</th>
-                                            <th>Kabkota</th>
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Klasifikasi</th>
