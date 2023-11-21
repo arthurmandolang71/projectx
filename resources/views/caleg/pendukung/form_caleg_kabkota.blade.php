@@ -128,6 +128,27 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="mb-12 col-md-12">
+                                                    <label class="text-label form-label"
+                                                        for="validationCustomUsername">KK/KTP Kepala Keluarga</label>
+                                                    <div class="input-group">
+                                                        <br>
+                                                        <span class="input-group-text"> <i
+                                                                class="bi bi-person-bounding-box"></i>
+                                                        </span>
+                                                        <input name="nama" value="{{ old('nama', $dpt->nama) }}"
+                                                            type="text"
+                                                            class="form-control @error('nama') is-invalid @enderror"
+                                                            id="validationCustomUsername" placeholder="Nama Lengkap"
+                                                            disabled>
+                                                        @error('nama')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                                 <div class="mb-3">
                                                     <label class="text-label form-label"
                                                         for="validationCustomUsername">Nomor Kartu

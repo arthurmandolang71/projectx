@@ -2,8 +2,9 @@
 
 @section('header')
     <link rel="stylesheet" href="{{ asset('') }}assets/vendor/datatables/css/jquery.dataTables.min.css">
+    <link href="{{ asset('') }}assets/css/style.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> --}}
 @endSection
 
 @section('content')
@@ -40,12 +41,11 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="example2" class="display" style="width:100%">
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            <th>Tim</th>
-                                            <th>username</th>
+                                            {{-- <th>username</th> --}}
                                             <th>No.Wa</th>
                                             <th>Keterangan</th>
                                             <th>status</th>
@@ -55,9 +55,8 @@
                                     <tbody>
                                         @foreach ($relawan as $item)
                                             <tr>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->tim_ref->nama }}</td>
-                                                <td>{{ $item->user_ref->username }}</td>
+                                                <td>{{ $item->nama }} <br> <span>{{ $item->tim_ref->nama }}</span></td>
+                                                {{-- <td>{{ $item->user_ref->username }}</td> --}}
                                                 <td>{{ $item->no_wa }}</td>1
                                                 <td>{{ $item->keterangan }}</td>
                                                 <td>

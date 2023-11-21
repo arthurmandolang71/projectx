@@ -111,7 +111,7 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="example2" class="display" style="width:100%">
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
@@ -120,6 +120,7 @@
                                             <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Tps</th>
+                                            <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -186,7 +187,7 @@
                                             <th>Kecamatan</th>
                                             <th>Kelurahan/Desa</th>
                                             <th>Tps</th>
-
+                                            <th>#</th>
                                         </tr>
                                     </tfoot>
                                 </table>

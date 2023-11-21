@@ -150,6 +150,28 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label"
+                                                        for="validationCustomUsername">Nomor Kartu
+                                                        Tanda Penduduk (KTP)</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"> <i
+                                                                class="bi bi-credit-card-fill"></i>
+                                                        </span>
+                                                        <input name="ktp"
+                                                            value="{{ old('ktp', $dpt->pendukung_caleg_ri->ktp ?? null) }}"
+                                                            type="text"
+                                                            class="form-control  @error('ktp') is-invalid @enderror"
+                                                            id=""
+                                                            placeholder="Masukan Nomor Kartu Tanda Penduduk (KTP)" />
+                                                        @error('ktp')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                                 <hr>
 
                                                 <div class="row ">
