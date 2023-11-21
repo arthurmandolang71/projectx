@@ -116,7 +116,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <div>
                                         <h4 class="card-title mb-2">Statistik Demografi Usia</h4>
-                                        <span class="fs-12">DPT 2024 berdasarkan Usia</span>
+                                        <span class="fs-12">Pendukung Berdasarkan Usia</span>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -147,7 +147,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <div>
                                         <h4 class="card-title mb-2">Statistik Jenis Kelamin</h4>
-                                        <span class="fs-12">DPT 2024 berdasarkan Jenis Kelamin</span>
+                                        <span class="fs-12">Pendukung berdasarkan Jenis Kelamin</span>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -182,7 +182,7 @@
                                     </div>
                                     <div>
                                         <h2 class="text-black invoice-num">{{ $total_pemilih_turunan }}</h2>
-                                        <span class="text-black fs-18">DPT Terdaftar</span>
+                                        <span class="text-black fs-18">Pendukung</span>
                                     </div>
                                 </div>
                             </div>
@@ -304,18 +304,18 @@
                                 ],
                                 borderWidth: 0,
                                 backgroundColor: [
-                                    "rgba(91, 207, 197, .9)",
-                                    "rgba(91, 207, 197, .7)",
-                                    "rgba(91, 207, 197, .5)",
-                                    "rgba(91, 207, 197, .2)",
-                                    "rgba(0,0,0,0.07)"
+                                    "rgb(217, 217, 217)",
+                                    "rgb(92, 214, 92)",
+                                    "rgb(255, 153, 0)",
+                                    "rgb(136, 0, 204)",
+                                    "rgb(204, 51, 0)"
                                 ],
                                 hoverBackgroundColor: [
-                                    "rgba(91, 207, 197, .9)",
-                                    "rgba(91, 207, 197, .7)",
-                                    "rgba(91, 207, 197, .5)",
-                                    "rgba(91, 207, 197, .2)",
-                                    "rgba(0,0,0,0.07)"
+                                    "rgb(217, 217, 217)",
+                                    "rgb(92, 214, 92)",
+                                    "rgb(255, 153, 0)",
+                                    "rgb(136, 0, 204)",
+                                    "rgb(204, 51, 0)"
                                 ]
 
                             }],
@@ -352,12 +352,12 @@
                                 ],
                                 borderWidth: 0,
                                 backgroundColor: [
-                                    "rgba(91, 207, 197, .9)",
-                                    "rgba(91, 207, 197, .7)",
+                                    "rgb(26, 117, 255)",
+                                    "rgb(255, 77, 148)",
                                 ],
                                 hoverBackgroundColor: [
-                                    "rgba(91, 207, 197, .9)",
-                                    "rgba(91, 207, 197, .7)",
+                                    "rgb(128, 179, 255)",
+                                    "rgb(255, 179, 209)",
                                 ]
 
                             }],

@@ -657,7 +657,7 @@
 
 
         <!--  vendors -->
-        <script src="{{ asset('') }}assets/vendor/global/global.min.js"></script>
+        {{-- <script src="{{ asset('') }}assets/vendor/global/global.min.js"></script> --}}
         <script src="{{ asset('') }}assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
         <script src="{{ asset('') }}assets/vendor/select2/js/select2.full.min.js"></script>

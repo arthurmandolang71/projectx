@@ -30,9 +30,9 @@
                                 <div class="media-body">
                                     <p class="mb-1">Total Pendukung</p>
                                     <h4 class="mb-0">{{ $total_pendukung }}</h4>
-                                    <a href="/dpt/dash/{{ $total_pendukung }}" target="_blank">><span
+                                    <a href="/pendukungcaleg/dash?prov=71" target="_blank">><span
                                             class="badge badge-primary">Dashboard</span></a>
-                                    <a href="/dpt/cari_nama/{{ $total_pendukung }}" target="_blank"><span
+                                    <a href="/pendukungcaleg/index" target="_blank"><span
                                             class="badge badge-primary">Data</span></a>
                                 </div>
                             </div>
@@ -57,8 +57,8 @@
                                 <div class="media-body">
                                     <p class="mb-1">Total Relawan</p>
                                     <h4 class="mb-0">{{ $total_relawan }}</h4>
-                                    <a href="/legistatif/dash/{{ $total_relawan }}" target="_blank">><span
-                                            class="badge badge-primary">Data Relawan</span></a>
+                                    <a href="/relawan" target="_blank">><span class="badge badge-primary">Data
+                                            Relawan</span></a>
                                 </div>
                             </div>
                         </div>

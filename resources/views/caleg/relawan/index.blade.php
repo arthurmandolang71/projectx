@@ -39,13 +39,13 @@
                                         class="btn-icon-start text-primary"><i class="fa fa-plus"></i>
                                     </span>Tambah Relawan</a>
                             </div>
+                            <br>
 
                             <div class="table-responsive">
                                 <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
-                                            {{-- <th>username</th> --}}
                                             <th>No.Wa</th>
                                             <th>Keterangan</th>
                                             <th>status</th>
@@ -55,9 +55,10 @@
                                     <tbody>
                                         @foreach ($relawan as $item)
                                             <tr>
-                                                <td>{{ $item->nama }} <br> <span>{{ $item->tim_ref->nama }}</span></td>
-                                                {{-- <td>{{ $item->user_ref->username }}</td> --}}
-                                                <td>{{ $item->no_wa }}</td>1
+                                                <td>{{ $item->nama }} <br>
+                                                    {{-- <span>{{ $item->tim_ref->nama }}</span> --}}
+                                                </td>
+                                                <td>{{ $item->no_wa }}</td>
                                                 <td>{{ $item->keterangan }}</td>
                                                 <td>
                                                     @if ($item->is_active)
