@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalegPendukungKabkota;
+use App\Models\CalegPendukungProv;
+use App\Models\CalegPendukungRi;
 use App\Models\Tim;
 use App\Models\TimReferensi;
 use App\Models\User;
@@ -24,6 +27,30 @@ class RelawanController extends Controller
 
         return view('caleg.relawan.index', [
             'title' => 'Relawan',
+            'relawan' => $relawan,
+        ]);
+    }
+
+    public function show(Request $request, $id)
+    {
+
+        $relawan = TimReferensi::where('id', $id)->first();
+
+        $level_caleg = $request->session()->get('level_caleg');
+
+        if ($level_caleg == 1) {
+            $pengikut = CalegPendukungRi::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+        } elseif ($level_caleg == 2) {
+            $pengikut = CalegPendukungProv::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+        } elseif ($level_caleg == 3) {
+            $pengikut = CalegPendukungKabkota::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+        }
+
+        // dd($relawan);
+
+        return view('caleg.relawan.print', [
+            'title' => 'Pengikut Relawan',
+            'pengikut' => $pengikut,
             'relawan' => $relawan,
         ]);
     }

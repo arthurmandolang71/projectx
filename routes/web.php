@@ -85,7 +85,7 @@ Route::resource('/tim', TimController::class)->middleware('isCaleg')->except(['d
     'tim' => 'tim',
 ]);
 
-Route::resource('/relawan', RelawanController::class)->middleware('isCaleg')->except(['destroy', 'show'])->parameters([
+Route::resource('/relawan', RelawanController::class)->middleware('isCaleg')->except(['destroy'])->parameters([
     'relawan' => 'relawan',
 ]);
 
