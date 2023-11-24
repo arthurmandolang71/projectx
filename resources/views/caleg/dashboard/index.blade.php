@@ -92,9 +92,9 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        @if ($list_klasifikasi)
-                                            @foreach ($list_klasifikasi as $item)
-                                                <div class="card">
+                                        <div class="card">
+                                            @if ($list_klasifikasi)
+                                                @foreach ($list_klasifikasi as $item)
                                                     <div class="card-body">
                                                         <h4 class="card-title">Pendukung <b>{{ $item['nama'] }}</b> Saya
                                                         </h4>
@@ -103,16 +103,15 @@
                                                             <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        @endif
-
+                                                @endforeach
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        @if ($list_bantuan)
-                                            @foreach ($list_bantuan as $item)
-                                                <div class="card">
+                                        <div class="card">
+                                            @if ($list_bantuan)
+                                                @foreach ($list_bantuan as $item)
                                                     <div class="card-body">
                                                         <h4 class="card-title">Pendukung Saya Yang sudah Menerima
                                                             <b>{{ $item['nama'] }}</b>
@@ -122,9 +121,9 @@
                                                             <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        @endif
+                                                @endforeach
+                                            @endif
+                                        </div>
 
                                     </div>
 
