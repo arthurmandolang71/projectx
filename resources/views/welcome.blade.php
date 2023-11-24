@@ -15,23 +15,54 @@
             </div>
             <!-- row -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card container">
-                        <br>
-                        <h4 class="card-title">Selamat Datang</h4>
-                        <span>ini merupakan aplikasi for caleg</span>
-                        <!--********************************** content end ***********************************-->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-4  col-md-4 col-xxl-4 ">
+                                    <img src="{{ auth()->user()->foto_profil }}" width="200" alt="" />
+
+                                </div>
+                                <!--Tab slider End-->
+                                <div class="col-xl-8 col-lg-8  col-md-8 col-xxl-9 col-sm-8">
+                                    <div class="product-detail-content">
+                                        <!--Product details-->
+                                        <div class="new-arrival-content pr">
+                                            <img src="{{ asset('') }}assets/images/logo/{{ $profil_caleg->partai->logo }}"
+                                                class="logo-abbr" width="53" height="53">
+                                            <h4>{{ $profil_caleg->partai->nama }}</h4>
+                                            <div class="comment-review star-rating">
+                                                <ul>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                </ul>
+
+                                            </div>
+                                            <div class="d-table mb-2">
+                                                <p class="price float-start d-block">{{ $profil_caleg->nama }}</p>
+                                            </div>
+                                            <p>Nomor Urut : {{ $profil_caleg->no_urut }} </p>
+                                            <p>Dapil : {{ $profil_caleg->dapil->nama }} </p>
+                                            <p>Dapil Wilayah : {{ $profil_caleg->dapil->keterangan }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
-@endSection
+    @endSection
 
 
 
-@section('footer')
-    <!-- Datatable -->
-    <script src="{{ asset('') }}assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('') }}assets/js/plugins-init/datatables.init.js"></script>
-@endSection
+    @section('footer')
+        <!-- Datatable -->
+        <script src="{{ asset('') }}assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="{{ asset('') }}assets/js/plugins-init/datatables.init.js"></script>
+    @endSection

@@ -16,6 +16,9 @@ use App\Http\Controllers\PendukungTimController;
 use App\Http\Controllers\PendukungCalegController;
 use App\Http\Controllers\KlasifikasiBantuanController;
 use App\Http\Controllers\KlasifikasiPendukungController;
+use App\Models\CalegKabkota;
+use App\Models\CalegProv;
+use App\Models\CalegRi;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +36,28 @@ Route::redirect('/', '/login');
 
 Route::redirect('/home', '/welcome');
 
-Route::view('/welcome', 'welcome', ['name' => session()->get('name'), 'title' => 'Selamat Datang'])->middleware('auth');
+Route::get(
+    '/welcome',
+    function () {
+        $level_caleg = session()->get('level_caleg');
+        $caleg_id = session()->get('caleg_id');
+
+        if ($level_caleg == 1) {
+            $profil_caleg = CalegRi::with('partai', 'dapil')->where('id', $caleg_id)->first();
+        } elseif ($level_caleg == 2) {
+            $profil_caleg = CalegProv::with('partai', 'dapil')->where('id', $caleg_id)->first();
+        } elseif ($level_caleg == 3) {
+            $profil_caleg = CalegKabkota::with('partai', 'dapil')->where('id', $caleg_id)->first();
+        } else {
+            $profil_caleg = null;
+        }
+
+        return view('welcome', [
+            'title' => 'Welcome',
+            'profil_caleg' => $profil_caleg,
+        ]);
+    }
+)->middleware('auth');
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'index')->middleware('guest')->name('login');

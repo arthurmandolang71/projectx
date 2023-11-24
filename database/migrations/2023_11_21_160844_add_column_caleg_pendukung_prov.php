@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('caleg_pendukung_prov', function (Blueprint $table) {
-            //
+            $table->string('kk')->nullable();
+            $table->string('status_keluarga')->nullable();
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('caleg_pendukung_prov', function (Blueprint $table) {
-            //
+            $table->dropColumn(['kk', 'status_keluarga']);
         });
     }
 };
