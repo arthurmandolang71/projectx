@@ -39,19 +39,21 @@ class RelawanController extends Controller
         $level_caleg = $request->session()->get('level_caleg');
 
         if ($level_caleg == 1) {
-            $pengikut = CalegPendukungRi::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+            $pengikut = CalegPendukungRi::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->orderBy("kk", "asc");
         } elseif ($level_caleg == 2) {
-            $pengikut = CalegPendukungProv::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+            $pengikut = CalegPendukungProv::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->orderBy("kk", "asc");
         } elseif ($level_caleg == 3) {
-            $pengikut = CalegPendukungKabkota::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->get();
+            $pengikut = CalegPendukungKabkota::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->orderBy("kk", "asc");
         }
 
-        // dd($relawan);
+        $total_kk = $pengikut->distinct()->count('kk');
+        // dd($total_kk);
 
         return view('caleg.relawan.print', [
             'title' => 'Pengikut Relawan',
-            'pengikut' => $pengikut,
+            'pengikut' => $pengikut->get(),
             'relawan' => $relawan,
+            'total_kk' =>  $total_kk,
         ]);
     }
 

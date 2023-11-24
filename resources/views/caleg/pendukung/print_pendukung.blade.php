@@ -51,16 +51,28 @@
     <div class="invoice-print p-0">
         <div class="d-flex justify-content-between flex-row">
             <div class="mb-4">
+                @if ($select_kabkota)
+                    <p class="mb-1">Kabupaten Kota : {{ $select_kabkota['nama'] }}
+                @endif
+                @if ($select_kecamatan)
+                    | Kecamatan : {{ $select_kecamatan['nama'] }}
+                @endif
+                @if ($select_kelurahandesa)
+                    | Kelurahan/Desa: {{ $select_kelurahandesa['nama'] }}
+                @endif
+                @if ($select_tps)
+                    | TPS: {{ $select_tps }}</p>
+                @endif
 
-                <p class="mb-1">Nama Koordinator : {{ $relawan->nama }}</p>
-
-                <p class="mb-1">No.Hp : {{ $relawan->no_wa }}</p>
-
-                <p class="mb-1">Keterangan : {{ $relawan->keterangan }} </p>
-
-                <p class="mb-1">Total Keluarga : {{ $total_kk }} </p>
-
-                {{-- <p class="mb-0">Tps : </p> --}}
+                @if ($select_referensi)
+                    <p class="mb-1">Referensi : {{ $select_referensi['nama'] }}
+                @endif
+                @if ($select_bantuan)
+                    | Klasifikasi Program/Bantuan : {{ $select_bantuan['nama'] }}
+                @endif
+                @if ($select_klasifikasi)
+                    | Klasifikasi Pendukung: {{ $select_klasifikasi['nama'] }}</p>
+                @endif
 
             </div>
             <div>
@@ -88,7 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pengikut as $item)
+                    @foreach ($pendukung as $item)
                         <tr>
                             <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
                             <td>{{ $item->kk }} <br>

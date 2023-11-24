@@ -79,7 +79,7 @@
                                                         class="btn btn-rounded btn-primary"><span
                                                             class="btn-icon-start text-primary"><i class="fa fa-edit"></i>
                                                         </span></a>
-                                                    <a href='/relawan/{{ $item->id }}' type='button'
+                                                    <a href='/relawan/{{ $item->id }}' target="_blank" type='button'
                                                         class='btn btn-print btn-info'><span
                                                             class='btn-icon-start text-info'><i
                                                                 class='fa fa-print color-info'></i></span></a>

@@ -93,6 +93,8 @@ Route::controller(PendukungCalegController::class)->middleware('isCaleg')->group
     Route::get('/pendukungcaleg/create/{id_dpt}/{status}', 'create');
     Route::post('/pendukungcaleg', 'store');
 
+    Route::get('/pendukungcaleg/pilih_print', 'pilih_print');
+
     Route::get('/pendukungcaleg/form_destroy/{id_dpt}', 'form_destroy');
     Route::delete('/pendukungcaleg/{id}', 'destroy');
 });

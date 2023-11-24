@@ -439,19 +439,22 @@ class PendukungCalegController extends Controller
 
         if ($level_caleg == 1) {
             $pendukung = CalegPendukungRi::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
-                ->orderBy("nama", "asc")
+                // ->orderBy("nama", "asc")
+                ->orderBy("kk", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
         if ($level_caleg == 2) {
             $pendukung = CalegPendukungProv::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
-                ->orderBy("nama", "asc")
+                // ->orderBy("nama", "asc")
+                ->orderBy("kk", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
         if ($level_caleg == 3) {
             $pendukung = CalegPendukungKabkota::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
                 // ->orderBy("pendukung_ref.nama", "asc")
+                ->orderBy("kk", "asc")
                 ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
         }
 
@@ -710,5 +713,145 @@ class PendukungCalegController extends Controller
         // return "berhasil";
 
         return redirect("$url")->with('pesan', 'Pendukung Berhasil di tambahkan');
+    }
+
+    //
+    public function pilih_print(Request $request)
+    {
+        //filter per dapil
+        $level_caleg = $request->session()->get('level_caleg');
+        $user_id = $request->session()->get('user_id');
+
+        if (request('kabkota') != '') {
+            $get_kabkota = Kabkota::firstWhere('id', request('kabkota'));
+            $select_kabkota = [
+                'id' => $get_kabkota->id,
+                'nama' => $get_kabkota->nama,
+            ];
+        } else {
+            $select_kabkota = NULL;
+        }
+
+        if (request('kecamatan') != '') {
+            $get_kecamatan = Kecamatan::firstWhere('id', request('kecamatan'));
+            $select_kecamatan = [
+                'id' => $get_kecamatan->id,
+                'nama' => $get_kecamatan->nama,
+            ];
+        } else {
+            $select_kecamatan = NULL;
+        }
+
+        if (request('kelurahandesa') != '') {
+            $get_kelurahandesa = Wilayah::firstWhere('id', request('kelurahandesa'));
+            $select_kelurahandesa = [
+                'id' => $get_kelurahandesa->id,
+                'nama' => $get_kelurahandesa->nama,
+            ];
+        } else {
+            $select_kelurahandesa = NULL;
+        }
+
+        if (request('bantuan') != '') {
+            $get_bantuan = KlasifikasiBantuan::firstWhere('id', request('bantuan'));
+            $select_bantuan = [
+                'id' => $get_bantuan->id,
+                'nama' => $get_bantuan->nama,
+            ];
+        } else {
+            $select_bantuan = NULL;
+        }
+
+        if (request('referensi') != '') {
+            $get_referensi = TimReferensi::firstWhere('id', request('referensi'));
+            $select_referensi = [
+                'id' => $get_referensi->id,
+                'nama' => $get_referensi->nama,
+            ];
+        } else {
+            $select_referensi = NULL;
+        }
+
+        if (request('klasifikasi') != '') {
+            $get_klasifikasi = KlasifikasiPendukung::firstWhere('id', request('klasifikasi'));
+            $select_klasifikasi = [
+                'id' => $get_klasifikasi->id,
+                'nama' => $get_klasifikasi->nama,
+            ];
+        } else {
+            $select_klasifikasi = NULL;
+        }
+
+        if (request('tps') != '') {
+            $string_tps = sprintf('%03d', request('tps'));
+            $select_tps = $string_tps;
+        } else {
+            $select_tps = NULL;
+        }
+
+        if (request('cari_nama') != '') {
+            $cari_nama = request('cari_nama');
+        } else {
+            $cari_nama = NULL;
+        }
+
+        if ($level_caleg == 1) {
+            $pendukung = CalegPendukungRi::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
+                // ->orderBy("nama", "asc")
+                ->orderBy("kk", "asc")
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
+        }
+
+        if ($level_caleg == 2) {
+            $pendukung = CalegPendukungProv::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
+                // ->orderBy("nama", "asc")
+                ->orderBy("kk", "asc")
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
+        }
+
+        if ($level_caleg == 3) {
+            $pendukung = CalegPendukungKabkota::with('klasifikasi_ref', 'bantuan_ref', 'relawan_ref', 'pendukung_ref', 'pendukung_ref.kabkota_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref')
+                // ->orderBy("pendukung_ref.nama", "asc")
+                ->orderBy("kk", "asc")
+                ->cari(request(['kabkota', 'kecamatan', 'kelurahandesa', 'tps', 'bantuan ', 'referensi', 'klasifikasi', 'cari_nama']));
+        }
+
+        if ($level_caleg > 1) {
+            $kabkota_dapil = $request->session()->get('kabkota_dapil');
+            $kabkota_list = Kabkota::whereIn('id', $kabkota_dapil)->get();
+        } else {
+            $kabkota_list = Kabkota::get();
+        }
+
+        $referensi_list = TimReferensi::where('user_id_caleg', $user_id)->get();
+        $bantuan_list = KlasifikasiBantuan::where('user_id', $user_id)->get();
+        $klasifikasi_list = KlasifikasiPendukung::where('user_id', $user_id)->get();
+
+        // dd($referensi_list);
+
+        $is_cetak = request('is_cetak');
+        if ($is_cetak) {
+            $view = 'caleg.pendukung.print_pendukung';
+        } else {
+            $view = 'caleg.pendukung.pilih_print';
+        }
+
+        return view($view, [
+            'title' => 'Print Pendukung',
+            'pendukung' => $pendukung->cursorPaginate(300)->withQueryString(),
+            'total_get' => $pendukung->count(),
+            'kabkota_list' => $kabkota_list,
+            'referensi_list' => $referensi_list,
+            'klasifikasi_list' => $klasifikasi_list,
+            'bantuan_list' => $bantuan_list,
+            'select_kabkota' => $select_kabkota,
+            'select_kecamatan' => $select_kecamatan,
+            'select_kelurahandesa' => $select_kelurahandesa,
+            'select_bantuan' => $select_bantuan,
+            'select_referensi' => $select_referensi,
+            'select_klasifikasi' => $select_klasifikasi,
+            'select_tps' => $select_tps,
+            'cari_nama' => $cari_nama,
+        ]);
     }
 }

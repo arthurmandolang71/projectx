@@ -95,6 +95,7 @@
                     <ul aria-expanded="false">
                         <li><a href="/pendukungcaleg/index">Penyaringan</a></li>
                         <li><a href='/pendukungcaleg/dash?prov=71'>Dashboard</a></li>
+                        <li><a href="/pendukungcaleg/pilih_print">Print/Pdf</a></li>
                     </ul>
                 </li>
                 <li>
