@@ -24,7 +24,7 @@
 
                                 </div>
                                 <!--Tab slider End-->
-                                <div class="col-xl-8 col-lg-8  col-md-8 col-xxl-9 col-sm-8">
+                                <div class="col-xl-8 col-lg-8  col-md-8 col-xxl-8 col-sm-8">
                                     <div class="product-detail-content">
                                         <!--Product details-->
                                         <div class="new-arrival-content pr">

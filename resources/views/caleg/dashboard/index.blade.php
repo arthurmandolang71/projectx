@@ -91,39 +91,51 @@
                                 <hr>
 
                                 <div class="row">
-                                    <div class="col-6">
-                                        <p>Total klasifikasi : </p>
-                                        <ul class="list-group list-group-flush">
-                                            @if ($list_klasifikasi)
-                                                @foreach ($list_klasifikasi as $item)
-                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                        <strong>{{ $item['nama'] }}</strong>
-                                                        <a href="" target="_blank"><span
-                                                                class="badge badge-rounded badge-primary">Total
-                                                                {{ $item['jumlah'] }}</span></a>
-                                                    </li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
+                                    <div class="col-md-6">
+                                        @if ($list_klasifikasi)
+                                            @foreach ($list_klasifikasi as $item)
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Pendukung <b>{{ $item['nama'] }}</b> Saya
+                                                        </h4>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
 
                                     </div>
-                                    <div class="col-6">
-                                        <p>Total Bantuan/Program : </p>
-                                        <ul class="list-group list-group-flush">
-                                            @if ($list_bantuan)
-                                                @foreach ($list_bantuan as $item)
-                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                        <strong>{{ $item['nama'] }}</strong>
-                                                        <a href="" target="_blank"><span
-                                                                class="badge badge-rounded badge-primary">Total :
-                                                                {{ $item['jumlah'] }} </span></a>
-                                                    </li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
+
+                                    <div class="col-md-6">
+                                        @if ($list_bantuan)
+                                            @foreach ($list_bantuan as $item)
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Pendukung Saya Yang sudah Menerima
+                                                            <b>{{ $item['nama'] }}</b>
+                                                        </h4>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
 
                                     </div>
+
                                 </div>
+
+
+
+
+
+
+
 
 
 
