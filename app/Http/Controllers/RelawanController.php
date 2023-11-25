@@ -156,9 +156,9 @@ class RelawanController extends Controller
     public function update(Request $request, $id)
     {
         $relawan = TimReferensi::where('id', $id)->with(['user_ref'])->first();
-        $user = TimReferensi::where('id', $relawan->user_id)->with(['user_ref'])->first();
+        $user = User::where('id', $relawan->user_id)->first();
 
-        // dd($relawan);
+        // dd($user);
 
         $validasi = [
             'tim_id' => ['required'],
