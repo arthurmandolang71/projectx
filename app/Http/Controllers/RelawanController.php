@@ -190,7 +190,7 @@ class RelawanController extends Controller
             $update_user['password'] = $validateData['password'];
         }
 
-        if ($request->username != $relawan->username) {
+        if ($request->username != $user->username) {
             $update_user['username'] = $validateData['username'];
         }
 
