@@ -97,6 +97,7 @@ class RelawanController extends Controller
             'username' => ['required', 'unique:users'],
             'no_wa' => ['required'],
             'keterangan' => ['required'],
+            'target_pendukung' => [''],
         ];
 
         if ($request->file('foto_relawan')) {
@@ -163,6 +164,7 @@ class RelawanController extends Controller
             'nama' => ['required'],
             'no_wa' => ['required'],
             'keterangan' => ['required'],
+            'target_pendukung' => [''],
         ];
 
         if ($request->username != $relawan->username) {

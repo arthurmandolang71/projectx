@@ -67,38 +67,43 @@
                                 <hr>
 
                                 <div class="row">
-                                    <div class="col-6">
-                                        <p>Total klasifikasi : </p>
-                                        <ul class="list-group list-group-flush">
+                                    <div class="col-md-6">
+                                        <div class="card">
                                             @if ($list_klasifikasi)
                                                 @foreach ($list_klasifikasi as $item)
-                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                        <strong>{{ $item['nama'] }}</strong>
-                                                        <a href="" target="_blank"><span
-                                                                class="badge badge-rounded badge-primary">Total
-                                                                {{ $item['jumlah'] }}</span></a>
-                                                    </li>
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Pendukung <b>{{ $item['nama'] }}</b> yang
+                                                            saya jangkau
+                                                        </h4>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                             @endif
-                                        </ul>
-
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <p>Total Bantuan/Program : </p>
-                                        <ul class="list-group list-group-flush">
+
+                                    <div class="col-md-6">
+                                        <div class="card">
                                             @if ($list_bantuan)
                                                 @foreach ($list_bantuan as $item)
-                                                    <li class="list-group-item d-flex px-0 justify-content-between">
-                                                        <strong>{{ $item['nama'] }}</strong>
-                                                        <a href="" target="_blank"><span
-                                                                class="badge badge-rounded badge-primary">Total :
-                                                                {{ $item['jumlah'] }} </span></a>
-                                                    </li>
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Pendukung Yang saya jangkau sasudah Menerima
+                                                            <b>{{ $item['nama'] }}</b>
+                                                        </h4>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <h2 class="fs-38">{{ $item['jumlah'] }} </h2>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                             @endif
-                                        </ul>
+                                        </div>
 
                                     </div>
+
                                 </div>
 
 

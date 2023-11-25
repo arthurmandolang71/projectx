@@ -20,7 +20,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4  col-md-4 col-xxl-4 ">
-                                    <img src="{{ auth()->user()->foto_profil }}" width="200" alt="" />
+                                    @if (auth()->user()->foto_profil)
+                                        <img src="{{ auth()->user()->foto_profil }}" width="200" alt="" />
+                                    @else
+                                        <img src="{{ asset('') }}assets/images/avatar/1.png" width="200">
+                                    @endif
 
                                 </div>
                                 <!--Tab slider End-->

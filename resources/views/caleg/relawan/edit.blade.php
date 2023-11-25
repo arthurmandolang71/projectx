@@ -164,6 +164,24 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="mb-3 col-md-4">
+                                            <label class="text-label form-label" for="validationCustomUsername">Target
+                                                Pendukung</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"> <i class="bi bi-instagram"></i>
+                                                </span>
+                                                <input name="target_pendukung"
+                                                    value="{{ old('target_pendukung', $relawan->target_pendukung) }}"
+                                                    type="text"
+                                                    class="form-control @error('facebook') is-invalid @enderror"
+                                                    id="validationCustomtarget_pendukung">
+                                                @error('target_pendukung')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="row ">
@@ -212,7 +230,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn me-2 btn-primary">Simpan</button>
-                                    <a href="/nik" class="btn btn-light">Batal</a>
+                                    <a href="/relawan" class="btn btn-light">Batal</a>
                                 </form>
                             </div>
 

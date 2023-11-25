@@ -49,12 +49,22 @@
                                             <th>No.Wa</th>
                                             <th>Keterangan</th>
                                             <th>Pengikut</th>
+                                            <th>Target</th>
                                             <th>status</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($relawan as $item)
+                                            @php
+                                                // dd($target_pengurus);
+                                                if ($item->pengikut_ref->count() > 0 and $item->target_pendukung > 0) {
+                                                    $persen = ($item->pengikut_ref->count() / $item->target_pendukung) * 100;
+                                                } else {
+                                                    $persen = 0;
+                                                }
+
+                                            @endphp
                                             <tr>
                                                 <td>{{ $item->nama }} <br>
                                                     {{-- <span>{{ $item->tim_ref->nama }}</span> --}}
@@ -65,6 +75,11 @@
                                                         target="_blank"><span
                                                             class="badge badge-lg light badge-primary">{{ $item->pengikut_ref->count() }}
                                                             Pengikut</span> </a>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-lg light badge-primary">{{ $persen }}%
+                                                        dari {{ $item->target_pendukung }}
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     @if ($item->is_active)
@@ -93,6 +108,7 @@
                                             <th>username</th>
                                             <th>No.Wa</th>
                                             <th>Keterangan</th>
+                                            <th>Target</th>
                                             <th>status</th>
                                         </tr>
                                     </tfoot>

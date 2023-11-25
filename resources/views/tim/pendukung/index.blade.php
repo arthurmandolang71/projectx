@@ -147,13 +147,12 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table id="example2" class="display" style="width:100%">
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Nama</th>
+                                            <th>KK/Ktp Kep. Keluarga</th>
                                             <th>Umur</th>
-                                            <th>Kabkota</th>
-                                            <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Klasifikasi</th>
                                             <th>Program</th>
@@ -165,9 +164,8 @@
                                         @foreach ($pendukung as $item)
                                             <tr>
                                                 <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
+                                                <td>{{ $item->kk }}</td>
                                                 <td>{{ $item->pendukung_ref->usia }}</td>
-                                                <td>{{ $item->pendukung_ref->kabkota_ref->nama }}</td>
-                                                <td>{{ $item->pendukung_ref->kecamatan_ref->nama }}</td>
                                                 <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
                                                 <td>{{ $item->klasifikasi_ref->nama ?? null }}</td>
                                                 <td>{{ $item->bantuan_ref->nama ?? null }}</td>
@@ -189,8 +187,6 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Umur</th>
-                                            <th>Kabkota</th>
-                                            <th>Kecamatan</th>
                                             <th>Kel./Desa</th>
                                             <th>Klasifikasi</th>
                                             <th>Program</th>

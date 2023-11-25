@@ -128,7 +128,7 @@ class PendukungTimController extends Controller
 
         return view('tim.pendukung.index', [
             'title' => 'Data Pendukung',
-            'pendukung' => $pendukung->cursorPaginate(300)->withQueryString(),
+            'pendukung' => $pendukung->orderBy('kk', 'asc')->cursorPaginate(300)->withQueryString(),
             'total_get' => $pendukung->count(),
             'kabkota_list' => $kabkota_list,
             'referensi_list' => $referensi_list,
@@ -196,6 +196,7 @@ class PendukungTimController extends Controller
             'klasifikasi' => $klasifikasi,
             'jenis_kelamin' => ['L', 'P'],
             'status_perkawinan' => ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati'],
+            'status_keluarga' => ['SUAMI', 'ISTRI', 'ANAK/CUCU', 'SAUDARA/LAINYA'],
             'url_direct' => $url_direct
         ]);
     }
@@ -259,6 +260,8 @@ class PendukungTimController extends Controller
         $pendukung_caleg['long'] = $request->long;
         $pendukung_caleg['lat'] = $request->lat;
         $pendukung_caleg['dpt'] = $pendukung['dpt'];
+        $pendukung_caleg['kk'] = $request->kk;
+        $pendukung_caleg['status_keluarga'] = $request->status_keluarga;
 
         $caleg_id = $request->session()->get('caleg_id');
         $pendukung_caleg['celeg_id'] = $caleg_id;
