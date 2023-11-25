@@ -156,6 +156,7 @@ class RelawanController extends Controller
     public function update(Request $request, $id)
     {
         $relawan = TimReferensi::where('id', $id)->with(['user_ref'])->first();
+        $user = TimReferensi::where('id', $relawan->user_id)->with(['user_ref'])->first();
 
         // dd($relawan);
 
@@ -167,7 +168,7 @@ class RelawanController extends Controller
             'target_pendukung' => [''],
         ];
 
-        if ($request->username != $relawan->username) {
+        if ($request->username != $user->username) {
             $validasi['username'] = ['required', 'unique:users', 'min:6'];
         }
 
