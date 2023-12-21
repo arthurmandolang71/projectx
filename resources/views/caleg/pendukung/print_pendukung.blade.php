@@ -93,7 +93,7 @@
                         <th>KK/NIK Kep.</th>
                         <th>Status Kel.</th>
                         <th>Usia</th>
-                        <th>No.Hp</th>
+                        <th>No.WA</th>
                         <th>Alamat</th>
                         <th>kelurahan</th>
                         <th>TPS</th>
