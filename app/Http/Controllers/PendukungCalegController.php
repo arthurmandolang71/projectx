@@ -854,4 +854,16 @@ class PendukungCalegController extends Controller
             'cari_nama' => $cari_nama,
         ]);
     }
+
+    public function destroy(Request $request, $id)
+    {
+
+        $level_caleg = $request->session()->get('level_caleg');
+
+        if ($level_caleg == 3) {
+            CalegPendukungKabkota::where('id', $id)->delete();
+        }
+
+        return redirect("/pendukungcaleg/index")->with('pesan', 'data barhasil di hapus! silakan cek kembali');
+    }
 }

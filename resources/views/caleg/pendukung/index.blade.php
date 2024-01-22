@@ -203,6 +203,15 @@
                                                         type='button' class='btn btn-rounded btn-info'><span
                                                             class='btn-icon-start text-info'><i
                                                                 class='fa fa-edit color-info'></i></span></a>
+                                                    <form action="/pendukungcaleg/{{ $item->id }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type='submit' class='btn btn-rounded btn-danger'
+                                                            onclick="return confirm('Are you sure you want to delete this item?');"><span
+                                                                class='btn-icon-start text-danger'><i
+                                                                    class='fa fa-trash color-danger'></i></span>
+                                                        </button>
+                                                    </form>
                                                 </td>
 
                                             </tr>
