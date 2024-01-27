@@ -168,6 +168,7 @@
                                 <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Nama</th>
                                             <th>KK/KTP Kep. Keluaga</th>
                                             <th>Umur</th>
@@ -183,6 +184,7 @@
                                     <tbody>
                                         @foreach ($pendukung as $item)
                                             <tr>
+                                                <td> {{ $loop->iteration }}</td>
                                                 <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
                                                 <td>{{ $item->kk }} <br>
                                                     <span>{{ $item->status_keluarga }}</span>

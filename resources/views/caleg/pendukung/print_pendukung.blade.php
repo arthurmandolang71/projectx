@@ -89,6 +89,7 @@
             <table class="table">
                 <thead class="table-light">
                     <tr>
+                        <th>No.</th>
                         <th>Nama</th>
                         <th>KK/NIK Kep.</th>
                         <th>Status Kel.</th>
@@ -102,6 +103,7 @@
                 <tbody>
                     @foreach ($pendukung as $item)
                         <tr>
+                            <td> {{ $loop->iteration }}</td>
                             <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
                             <td>{{ $item->kk }} <br>
                             <td>{{ $item->status_keluarga }} <br>
