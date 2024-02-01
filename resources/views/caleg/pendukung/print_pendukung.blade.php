@@ -108,7 +108,8 @@
                             <td>{{ $item->kk }} <br>
                             <td>{{ $item->status_keluarga }} <br>
                             <td>{{ $item->pendukung_ref->usia }} <br>
-                            <td>{{ $item->no_wa }} / {{ $item->no_hp }}<br>
+                            <td>
+                                <p>{{ $item->no_wa }} / {{ $item->no_hp }}<br>
                             <td>{{ $item->alamat_detail }} <br>
                             <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
                             <td><strong>{{ $item->pendukung_ref->tps }}</strong></td>

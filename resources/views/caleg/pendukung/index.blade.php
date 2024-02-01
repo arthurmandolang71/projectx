@@ -177,6 +177,7 @@
                                             <th>Klasifikasi</th>
                                             <th>Program</th>
                                             <th>Referensi</th>
+                                            <th>No.Wa/No.Hp</th>
                                             <th>Tps</th>
                                             <th>#</th>
                                         </tr>
@@ -196,6 +197,7 @@
                                                 <td>{{ $item->klasifikasi_ref->nama ?? null }}</td>
                                                 <td>{{ $item->bantuan_ref->nama ?? null }}</td>
                                                 <td>{{ $item->relawan_ref->nama ?? null }}</td>
+                                                <td>{{ $item->no_wa }} <br> {{ $item->no_hp }}<br>
                                                 <td>{{ $item->pendukung_ref->tps }}</td>
                                                 <td>
                                                     @php
