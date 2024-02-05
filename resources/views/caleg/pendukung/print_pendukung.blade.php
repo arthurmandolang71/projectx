@@ -97,6 +97,7 @@
                         <th>No.WA/HP</th>
                         <th>Alamat</th>
                         <th>kelurahan</th>
+                        <th>Referensi</th>
                         <th>TPS</th>
                     </tr>
                 </thead>
@@ -112,6 +113,7 @@
                                 <p>{{ $item->no_wa }} / {{ $item->no_hp }}<br>
                             <td>{{ $item->alamat_detail }} <br>
                             <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
+                            <td>{{ $item->relawan_ref->nama ?? null }} <br>
                             <td><strong>{{ $item->pendukung_ref->tps }}</strong></td>
                         </tr>
                     @endforeach

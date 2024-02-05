@@ -827,7 +827,7 @@ class PendukungCalegController extends Controller
         $bantuan_list = KlasifikasiBantuan::where('user_id', $user_id)->get();
         $klasifikasi_list = KlasifikasiPendukung::where('user_id', $user_id)->get();
 
-        // dd($referensi_list);
+        // dd($pendukung->get());
 
         $is_cetak = request('is_cetak');
         if ($is_cetak) {
