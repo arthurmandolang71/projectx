@@ -92,7 +92,7 @@
                         <th>No.</th>
                         <th>Nama</th>
                         <th>KK/NIK Kep.</th>
-                        <th>Status Kel.</th>
+                        {{-- <th>Status Kel.</th> --}}
                         <th>Usia</th>
                         <th>No.WA/HP</th>
                         <th>Alamat</th>
@@ -107,7 +107,7 @@
                             <td> {{ $loop->iteration }}</td>
                             <td><strong>{{ $item->pendukung_ref->nama }}</strong></td>
                             <td>{{ $item->kk }} <br>
-                            <td>{{ $item->status_keluarga }} <br>
+                                {{-- <td>{{ $item->status_keluarga }} <br> --}}
                             <td>{{ $item->pendukung_ref->usia }} <br>
                             <td>
                                 <p>{{ $item->no_wa }} / {{ $item->no_hp }}<br>
