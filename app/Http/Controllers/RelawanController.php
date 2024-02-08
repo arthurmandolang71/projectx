@@ -43,7 +43,9 @@ class RelawanController extends Controller
         } elseif ($level_caleg == 2) {
             $pengikut = CalegPendukungProv::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->orderBy("kk", "asc");
         } elseif ($level_caleg == 3) {
-            $pengikut = CalegPendukungKabkota::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->orderBy("kk", "asc");
+            $pengikut = CalegPendukungKabkota::with(['pendukung_ref', 'pendukung_ref.kecamatan_ref', 'pendukung_ref.kelurahandesa_ref'])->where('referensi_id', $id)->whereHas('pendukung_ref', function ($q) {
+                $q->orderBy('tps', 'asc');
+            });
         }
 
         $total_kk = $pengikut->distinct()->count('kk');
