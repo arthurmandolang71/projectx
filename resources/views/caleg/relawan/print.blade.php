@@ -81,7 +81,7 @@
                         <th>KK/NIK Kep.</th>
                         {{-- <th>Status Kel.</th> --}}
                         <th>Usia</th>
-                        <th>No.Hp</th>
+                        <th>No.Hp/No.Wa</th>
                         {{-- <th>Alamat</th> --}}
                         <th>kelurahan</th>
                         <th>TPS</th>
@@ -94,7 +94,7 @@
                             <td>{{ $item->kk }} <br>
                                 {{-- <td>{{ $item->status_keluarga }} <br> --}}
                             <td>{{ $item->pendukung_ref->usia }} <br>
-                            <td>{{ $item->no_hp }} <br>
+                            <td>{{ $item->no_hp }} / {{ $item->no_wa }} <br>
                                 {{-- <td>{{ $item->alamat_detail }} <br> --}}
                             <td>{{ $item->pendukung_ref->kelurahandesa_ref->nama }}</td>
                             <td><strong>{{ $item->pendukung_ref->tps }}</strong></td>

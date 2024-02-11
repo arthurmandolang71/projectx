@@ -100,7 +100,7 @@ class CalegPendukungKabkota extends Model
 
     public function pendukung_ref(): HasOne
     {
-        return $this->hasOne(CalegPendukung::class, 'dpt', 'dpt');
+        return $this->hasOne(CalegPendukung::class, 'dpt', 'dpt')->orderBy('tps', 'desc');
     }
 
     public function klasifikasi_ref(): HasOne
